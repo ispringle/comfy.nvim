@@ -9,20 +9,20 @@ vim.g.loaded_2html_plugin = false
 vim.g.loaded_remote_plugins = false
 
 -- Deferred loading
-  -- set.syntax = "off"
-  -- set.filetype = "off"
-  -- set.filetype = "plugin indent off"
-  -- set.shadafile = "NONE"
+vim.opt.syntax = "off"
+-- vim.opt.filetype = "off"
+-- vim.opt.filetype = "plugin indent off"
+-- vim.opt.shadafile = "NONE"
 
 vim.defer_fn(function()
   require('settings')
   require('plugins')
   require('mappings')
 
-  -- set.shadafile = ""
-  -- set.syntax = "on"
-  -- set.filetype = "on"
-  -- set.filetype = "plugin indent on"
+  -- vim.opt.shadafile = ""
+  -- vim.opt.syntax = "on"
+  -- vim.opt.filetype = "on"
+  -- vim.opt.filetype = "plugin indent on"
 end, 0)
 
 

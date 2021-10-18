@@ -1,6 +1,5 @@
 -- Ergonomics
 local set = vim.opt
-
 local o = vim.o
 local bo = vim.bo
 local wo = vim.bo
@@ -11,6 +10,7 @@ local cmd = vim.cmd
 
 local utils = require('utils')
 
+vim.opt.termguicolors = true
 set.swapfile = true
 set.dir = '/tmp'
 set.smartcase = true
@@ -49,10 +49,11 @@ set.foldlevelstart = 10
 set.foldlevel = 10
 set.foldmethod = 'indent'
 
-cmd('syntax on')
+set.syntax = "on"
+-- set.filetype = "on"
 
 -- Cache dirs
-set.backupdir = '$HOME/.local/share/nvim/backups/'
+-- set.backupdir = '$HOME/.local/share/nvim/backups/'
 set.dir = '$HOME/.local/share/nvim/swap/'
 set.undodir = '$HOME/.local/share/nvim/undo/'
 

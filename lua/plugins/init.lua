@@ -78,6 +78,7 @@ require('paq'){
 
 require("telescope").setup()
 require("plugins.treesitter").setup()
+require('plugins.which-key').setup()
 
 require('Comment').setup()
 require("todo-comments").setup{}
@@ -89,6 +90,3 @@ require('lightspeed')
 require('plugins.windows').setup()
 require('bufdel').setup({ next = 'cycle', quit = true, })
 
-require('plugins.terminal').setup()
-
-require('plugins.keymap').setup()

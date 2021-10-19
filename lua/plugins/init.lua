@@ -79,9 +79,6 @@ require('paq'){
 require("telescope").setup()
 require("plugins.treesitter").setup()
 
-require('plugins.completion').setup()
-
-require('plugins.lsp').setup()
 require('plugins.trouble')
 
 require('plugins.colorscheme').setup()

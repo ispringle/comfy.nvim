@@ -18,11 +18,7 @@ vim.defer_fn(function()
   require('settings')
   require('plugins')
   require('mappings')
-
-  -- vim.opt.shadafile = ""
-  -- vim.opt.syntax = "on"
-  -- vim.opt.filetype = "on"
-  -- vim.opt.filetype = "plugin indent on"
+  require('modules')
 end, 0)
 
 

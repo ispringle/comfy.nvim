@@ -1,14 +1,17 @@
 -- Ergonomics
 local set = vim.opt
-local o = vim.o
-local bo = vim.bo
-local wo = vim.bo
+local fn = vim.fn
+-- local o = vim.o
+-- local bo = vim.bo
+-- local wo = vim.bo
 
 local g = vim.g
 
-local cmd = vim.cmd
+-- local cmd = vim.cmd
 
 local utils = require('utils')
+
+g.mapleader = " "
 
 vim.opt.termguicolors = true
 set.swapfile = true
@@ -53,9 +56,9 @@ set.syntax = "on"
 -- set.filetype = "on"
 
 -- Cache dirs
--- set.backupdir = '$HOME/.local/share/nvim/backups/'
-set.dir = '$HOME/.local/share/nvim/swap/'
-set.undodir = '$HOME/.local/share/nvim/undo/'
+-- set.backupdir = fn.stdpath('data')..'backup'
+set.dir = fn.stdpath('data')..'swap'
+set.undodir = fn.stdpath('data')..'undo'
 
 -- augroups
 utils.augroup('specify_filetype', {

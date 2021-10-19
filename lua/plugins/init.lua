@@ -5,7 +5,7 @@ local install_path = fn.stdpath('data')..'/site/pack/paqs/start/paq-nvim'
 
 -- Bootstrap Packer
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({
+  fn.system({
     'git',
     'clone',
     '--depth',
@@ -20,12 +20,13 @@ require('paq'){
   'savq/paq-nvim'; -- The Paq Package Manager
   'nvim-lua/plenary.nvim'; -- Lua/Vim helper functions, req for many a plugin
   'Olical/aniseed'; -- A lang. for Lua. Req for something...
-  "folke/persistence.nvim"; -- Session Management
+  -- "folke/persistence.nvim"; -- Session Management
   'nvim-telescope/telescope.nvim'; -- Le Supreme Fuzzy Finder
   'kyazdani42/nvim-web-devicons'; -- Icons, but not the Catholic sort
   -- 'yamatsum/nvim-nonicons'; -- web-devicons defaults
   'tpope/vim-repeat'; -- EZ repeat motions
   { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' };
+  'folke/which-key.nvim';
 
   -- Treesitter and Friends
   { 'nvim-treesitter/nvim-treesitter', branch = vim.fn.has("nvim-0.6.0") == 1 and "master" or "0.5-compat", }; -- Syntax Crawling
@@ -62,20 +63,26 @@ require('paq'){
 
   -- Buffers and Windows
   'ojroques/nvim-bufdel';
+  'beauwilliams/focus.nvim';
+
+  -- Productivity
+  'oberblastmeister/neuron.nvim';
+
+  -- Terminal
+  'akinsho/toggleterm.nvim';
+  'tknightz/telescope-termfinder.nvim';
 
   -- Language Support
   'folke/lua-dev.nvim';
 }
 
+require("telescope").setup()
 require("plugins.treesitter").setup()
-require("persistence").setup()
 
 require('plugins.completion').setup()
 
 require('plugins.lsp').setup()
--- require('navigator').setup({ lsp_installer = true })
 require('plugins.trouble')
-require('plugins.lsp.signature')
 
 require('plugins.colorscheme').setup()
 require('plugins.indent-blankline').setup()
@@ -89,4 +96,9 @@ require('mkdir')
 require('surround').setup({ mapping_style = "surround" })
 require('lightspeed')
 
+require('plugins.windows').setup()
 require('bufdel').setup({ next = 'cycle', quit = true, })
+
+require('plugins.terminal').setup()
+
+require('plugins.keymap').setup()

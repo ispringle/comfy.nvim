@@ -1,5 +1,4 @@
 local fn = vim.fn
-
 -- Set paq install path
 local install_path = fn.stdpath('data')..'/site/pack/paqs/start/paq-nvim'
 
@@ -20,7 +19,7 @@ require('paq'){
   'savq/paq-nvim'; -- The Paq Package Manager
   'nvim-lua/plenary.nvim'; -- Lua/Vim helper functions, req for many a plugin
   'Olical/aniseed'; -- A lang. for Lua. Req for something...
-  -- "folke/persistence.nvim"; -- Session Management
+  'rmagatti/auto-session'; -- TODO setup and use this
   'nvim-telescope/telescope.nvim'; -- Le Supreme Fuzzy Finder
   'kyazdani42/nvim-web-devicons'; -- Icons, but not the Catholic sort
   -- 'yamatsum/nvim-nonicons'; -- web-devicons defaults
@@ -30,8 +29,10 @@ require('paq'){
 
   -- Treesitter and Friends
   { 'nvim-treesitter/nvim-treesitter', branch = vim.fn.has("nvim-0.6.0") == 1 and "master" or "0.5-compat", }; -- Syntax Crawling
+  { 'nvim-treesitter/nvim-treesitter-textobjects', branch = vim.fn.has("nvim-0.6.0") == 1 and "master" or "0.5-compat", }; -- TODO setup some sweet textobjects
   'nvim-treesitter/nvim-treesitter-refactor'; -- Treesitter go-to definitions and such
   'JoosepAlviste/nvim-ts-context-commentstring'; -- Sets comment strings based on what treesitter says the lang at the cursor is
+  'romgrk/nvim-treesitter-context';
 
   -- Language Server Protocol
   'neovim/nvim-lspconfig'; -- Language Server Protocol stuff
@@ -55,11 +56,18 @@ require('paq'){
   -- Editor Features
   'numToStr/Comment.nvim'; -- Comment stuff out
   'folke/todo-comments.nvim'; -- Highlight & Search for TODO keywords in src files
-  'TimUntersberger/neogit'; -- Magit, but in Blessed Neovim
   'norcalli/nvim-colorizer.lua'; -- Highlight colorcodes with the color the reference
   'jghauser/mkdir.nvim'; -- mkdir on save if dir doesn't exist
   'blackCauldron7/surround.nvim'; -- like tpope's surround, but Luafied
   'ggandor/lightspeed.nvim'; -- vim-sneak w/ a jetpack
+  'p00f/nvim-ts-rainbow';
+  'nacro90/numb.nvim';
+  'AllenDang/nvim-expand-expr';
+  -- TODO investigate/try out neogen for auto code annotations
+
+  -- Git
+  'TimUntersberger/neogit'; -- Magit, but in Blessed Neovim
+  'lewis6991/gitsigns.nvim';
 
   -- Buffers and Windows
   'ojroques/nvim-bufdel';
@@ -74,6 +82,7 @@ require('paq'){
 
   -- Language Support
   'folke/lua-dev.nvim';
+  'gennaro-tedesco/nvim-jqx';
 }
 
 require("telescope").setup()
@@ -86,6 +95,10 @@ require('colorizer').setup()
 require('mkdir')
 require('surround').setup({ mapping_style = "surround" })
 require('lightspeed')
+require('numb').setup()
+require('nvim-jqx.config')
+
+require('gitsigns').setup()
 
 require('plugins.windows').setup()
 require('bufdel').setup({ next = 'cycle', quit = true, })

@@ -4,7 +4,7 @@ function M.setup()
   -- coq settings
   vim.g.coq_settings = {
     keymap = { recommended = false }, -- for autopairs
-    auto_start = true,
+    auto_start = true, -- TODO maybe fix this?
     ["display.pum.fast_close"] = false,
   }
 

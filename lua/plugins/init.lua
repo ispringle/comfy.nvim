@@ -79,11 +79,6 @@ require('paq'){
 require("telescope").setup()
 require("plugins.treesitter").setup()
 
-require('plugins.colorscheme').setup()
-require('plugins.indent-blankline').setup()
--- require("plugins.dashboard-nvim")
--- require("twilight").setup {}
-
 require('Comment').setup()
 require("todo-comments").setup{}
 require('colorizer').setup()

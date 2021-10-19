@@ -2,25 +2,28 @@ local lsp_installer = require("nvim-lsp-installer")
 local servers = {
   "ansiblels",
   "bashls",
+  "clangd",
   "diagnosticls",
   "docker",
+  "dotls",
   "eslint",
+  "graphql",
   "gopls",
   "html",
   "jsonls",
   "texlab",
+  "pylsp",
   "pyright",
   "rust_analyzer",
   "semneko_lua",
-  "sqlls",
+  "sqls",
   "stylelint_lsp",
-  "tsflint",
+  "terraformls",
   "tsserver",
   "lemminx",
   "yamlls",
+  "vimls",
 }
-
-
 
 for _, name in pairs(servers) do
   local ok, server = lsp_installer.get_server(name)

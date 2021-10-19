@@ -36,7 +36,7 @@ require('paq'){
   'neovim/nvim-lspconfig'; -- Language Server Protocol stuff
   'williamboman/nvim-lsp-installer'; -- Language Server Protocol installer
   'folke/trouble.nvim';
-  'ray-x/navigator.lua'; -- TODO determine if I want or need this
+  { 'ray-x/navigator.lua', branch = 'nvim-lsp-installer' }; -- TODO determine if I want or need this
   'ray-x/lsp_signature.nvim';
 
   -- Completion
@@ -64,22 +64,21 @@ require('paq'){
   'ojroques/nvim-bufdel';
 
   -- Language Support
-  -- 'folke/lua-dev.nvim';
+  'folke/lua-dev.nvim';
 }
 
-require("plugins.treesitter")
+require("plugins.treesitter").setup()
 require("persistence").setup()
 
--- require('plugins.lsp.config')
-require('navigator').setup()
-require('plugins.lsp.installer')
+require('plugins.completion').setup()
+
+require('plugins.lsp').setup()
+-- require('navigator').setup({ lsp_installer = true })
 require('plugins.trouble')
 require('plugins.lsp.signature')
 
-require('plugins.completion')
-
-require('plugins.colorscheme')
-require('plugins.indent-blankline')
+require('plugins.colorscheme').setup()
+require('plugins.indent-blankline').setup()
 -- require("plugins.dashboard-nvim")
 -- require("twilight").setup {}
 
@@ -87,7 +86,7 @@ require('Comment').setup()
 require("todo-comments").setup{}
 require('colorizer').setup()
 require('mkdir')
-require('surround').setup({ mapping_style = "sandwich" })
+require('surround').setup({ mapping_style = "surround" })
 require('lightspeed')
 
 require('bufdel').setup({ next = 'cycle', quit = true, })

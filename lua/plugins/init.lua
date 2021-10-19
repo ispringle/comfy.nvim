@@ -36,9 +36,9 @@ require('paq'){
   -- Language Server Protocol
   'neovim/nvim-lspconfig'; -- Language Server Protocol stuff
   'williamboman/nvim-lsp-installer'; -- Language Server Protocol installer
-  'folke/trouble.nvim';
-  { 'ray-x/navigator.lua', branch = 'nvim-lsp-installer' }; -- TODO determine if I want or need this
-  'ray-x/lsp_signature.nvim';
+  'folke/trouble.nvim'; -- Better quickfix and diagnostic window
+  { 'ray-x/navigator.lua', branch = 'nvim-lsp-installer' }; -- We use this to manage LSP setup
+  'ray-x/lsp_signature.nvim'; -- LSP powered function signatures
 
   -- Completion
   { 'ms-jpq/coq_nvim', branch = 'coq' }; -- completion engine
@@ -78,8 +78,6 @@ require('paq'){
 
 require("telescope").setup()
 require("plugins.treesitter").setup()
-
-require('plugins.trouble')
 
 require('plugins.colorscheme').setup()
 require('plugins.indent-blankline').setup()

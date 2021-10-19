@@ -1,7 +1,11 @@
 local aesthetic = require('modules/aesthetic')
 local completion = require('modules/completion')
+local git = require('modules/git')
 local lsp = require('modules/lsp')
+local terminal = require('modules/terminal')
 
 aesthetic.setup()
 completion.setup()
+git.setup()
 lsp.setup()
+terminal.setup()

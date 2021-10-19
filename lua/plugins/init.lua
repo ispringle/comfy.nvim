@@ -47,7 +47,7 @@ require('paq'){
   { 'ms-jpq/coq.thirdparty', branch = '3p' }; -- coq integrations
   'windwp/nvim-autopairs';
 
-  -- A E S T H E T I C S
+  -- A E S T H E T I C
   'Pocco81/Catppuccino.nvim';
   'lukas-reineke/indent-blankline.nvim';
   -- 'glepnir/dashboard-nvim'; -- It's a... dashboard... duh
@@ -63,11 +63,14 @@ require('paq'){
   'p00f/nvim-ts-rainbow';
   'nacro90/numb.nvim';
   'AllenDang/nvim-expand-expr';
+  { 'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps' };
   -- TODO investigate/try out neogen for auto code annotations
 
   -- Git
   'TimUntersberger/neogit'; -- Magit, but in Blessed Neovim
   'lewis6991/gitsigns.nvim';
+  'ruifm/gitlinker.nvim';
+  'sindrets/diffview.nvim';
 
   -- Buffers and Windows
   'ojroques/nvim-bufdel';
@@ -97,8 +100,6 @@ require('surround').setup({ mapping_style = "surround" })
 require('lightspeed')
 require('numb').setup()
 require('nvim-jqx.config')
-
-require('gitsigns').setup()
 
 require('plugins.windows').setup()
 require('bufdel').setup({ next = 'cycle', quit = true, })

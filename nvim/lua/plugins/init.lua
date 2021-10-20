@@ -14,7 +14,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
   })
 end
 
-require('paq'){
+local paq = require('paq')
+paq {
   -- The Bear Essentials
   'savq/paq-nvim'; -- The Paq Package Manager
   'nvim-lua/plenary.nvim'; -- Lua/Vim helper functions, req for many a plugin
@@ -39,7 +40,7 @@ require('paq'){
   { 'nvim-treesitter/nvim-treesitter-textobjects', branch = vim.fn.has("nvim-0.6.0") == 1 and "master" or "0.5-compat", }; -- TODO setup some sweet textobjects
   'nvim-treesitter/nvim-treesitter-refactor'; -- Treesitter go-to definitions and such
   'JoosepAlviste/nvim-ts-context-commentstring'; -- Sets comment strings based on what treesitter says the lang at the cursor is
-  'romgrk/nvim-treesitter-context';
+  'romgrk/nvim-treesitter-context'; -- Keeps context of current pos at top of file
 
   -- Language Server Protocol
   'neovim/nvim-lspconfig'; -- Language Server Protocol stuff
@@ -57,7 +58,9 @@ require('paq'){
   -- A E S T H E T I C
   'Pocco81/Catppuccino.nvim';
   'lukas-reineke/indent-blankline.nvim';
-  -- 'glepnir/dashboard-nvim'; -- It's a... dashboard... duh
+  'romgrk/barbar.nvim';
+  'hoob3rt/lualine.nvim';
+  'SmiteshP/nvim-gps';
   -- 'folke/twilight.nvim'; -- Dim the text not near cursor
 
   -- Editor Features
@@ -98,6 +101,9 @@ require('paq'){
   'folke/lua-dev.nvim';
   'gennaro-tedesco/nvim-jqx';
 }
+
+-- Auto install plugins _before_ we run them to hopefully avoid the ugly red wall on start-up
+paq.install()
 
   -- Telescope and Friends
 require("telescope").setup({

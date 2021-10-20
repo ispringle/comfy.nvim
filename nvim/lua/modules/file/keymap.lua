@@ -4,7 +4,7 @@ local wk = require('which-key')
 function M.setup()
   wk.register({
     ["<leader>"] = {
-      T = { "<cmd>NvimTreeToggle<cr>", "File Tree" },
+      T = { "<cmd>lua require('modules/aesthetic/plugins/tabline').toggle_tree()<cr>", "File Tree" },
     }
   })
 

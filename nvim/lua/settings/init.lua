@@ -55,6 +55,9 @@ set.foldmethod = 'indent'
 set.syntax = "on"
 -- set.filetype = "on"
 
+-- set.noshowmode = true
+-- set.noshowcmd = true
+
 -- Cache dirs
 -- set.backupdir = fn.stdpath('data')..'backup'
 set.dir = fn.stdpath('data')..'swap'

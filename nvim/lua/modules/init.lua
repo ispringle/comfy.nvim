@@ -1,8 +1,8 @@
+local file = require('modules/file')
 local aesthetic = require('modules/aesthetic')
 local completion = require('modules/completion')
 local git = require('modules/git')
 local lsp = require('modules/lsp')
-local file = require('modules/file')
 local terminal = require('modules/terminal')
 
 aesthetic.setup()

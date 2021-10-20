@@ -8,7 +8,7 @@ function M.setup()
 
   -- configure it
   catppuccino.setup({
-    colorscheme = "dark_catppuccino",
+    colorscheme = "neon_latte",
     transparency = false,
     term_colors = false,
     styles = {
@@ -53,7 +53,7 @@ function M.setup()
       neogit = true,
       vim_sneak = false,
       fern = false,
-      barbar = false,
+      barbar = true,
       bufferline = false,
       markdown = false,
       lightspeed = true,

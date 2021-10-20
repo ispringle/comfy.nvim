@@ -1,4 +1,5 @@
 # comfy.nvim
+![Scrot!](https://user-images.githubusercontent.com/18722936/138166071-8ccc9b22-ec69-44ae-9d3c-c43e2adca05b.png)
 
 ```
                    ___.--------'``````:``````'--------.___

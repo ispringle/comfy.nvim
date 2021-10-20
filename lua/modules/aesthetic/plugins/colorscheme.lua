@@ -38,11 +38,11 @@ function M.setup()
       lsp_trouble = true,
       lsp_saga = false,
       gitgutter = false,
-      gitsigns = false,
+      gitsigns = true,
       telescope = true,
       nvimtree = {
-        enabled = false,
-        show_root = false,
+        enabled = true,
+        show_root = true,
       },
       which_key = true,
       indent_blankline = {
@@ -57,7 +57,7 @@ function M.setup()
       bufferline = false,
       markdown = false,
       lightspeed = true,
-      ts_rainbow = false,
+      ts_rainbow = true,
       hop = false,
     }
   }

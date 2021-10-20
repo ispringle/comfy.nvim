@@ -9,6 +9,7 @@ wk.register({
     g = { "<cmd>lua require('gitsigns').toggle_current_line_blame()<cr>", "Toggle gitblame on line" },
     j = { "<cmd>JqxQuery<cr>", "Run jq/yq query" },
     J = { "<cmd>JqxList<cr>", "Prettify JSON/YAML and open keys in quickfix" },
+    t = { "<cmd>ToggleTerm<cr>", "Terminal" },
     T = { "<cmd>TroubleToggle<cr>", "Trouble" },
   }
 })

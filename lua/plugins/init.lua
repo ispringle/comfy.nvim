@@ -63,8 +63,9 @@ require('paq'){
   'p00f/nvim-ts-rainbow';
   'nacro90/numb.nvim';
   'AllenDang/nvim-expand-expr';
-  { 'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps' };
+  -- { 'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps' };
   -- TODO investigate/try out neogen for auto code annotations
+  'kyazdani42/nvim-tree.lua';
 
   -- Git
   'TimUntersberger/neogit'; -- Magit, but in Blessed Neovim
@@ -99,8 +100,9 @@ require('mkdir')
 require('surround').setup({ mapping_style = "surround" })
 require('lightspeed')
 require('numb').setup()
-require('nvim-jqx.config')
+require('plugins/tree')
 
 require('plugins.windows').setup()
 require('bufdel').setup({ next = 'cycle', quit = true, })
 
+require('nvim-jqx.config')

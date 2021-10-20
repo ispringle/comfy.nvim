@@ -2,6 +2,13 @@
 
 -- utils.map('nnoremap', '<leader><space>', ':nohlsearch<CR>')
 
--- require('mappings.lsp')
+local wk = require('which-key')
+
+wk.register({
+  ["<leader>"] = {
+    T = { "<cmd>NvimTreeToggle<cr>", "File Tree" },
+  }
+})
+
 require('mappings.toggle')
 require('mappings.window')

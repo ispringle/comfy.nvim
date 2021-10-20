@@ -2,15 +2,14 @@ local M = {}
 local wk = require('which-key')
 
 function M.setup()
+  -- Normal Bindings
   wk.register({
     ["<leader>L"] = {
       name = "+LSP",
       c = { "<cmd>lua require('navigator.codeAction').code_action()<cr>", "Code Action" },
-      C = { "<cmd>lua vim.lsp.buf.range_code_action()<cr>", "Code Action on Range", mode="v" },
       d = { "<cmd>lua require('navigator.definition').definition()<cr>", "Definition" },
       D = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "Type Definition" },
       f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
-      F = { "<cmd>lua vim.lsp.buf.range_formatting()<cr>", "Range Format", mode="v" },
       g = {
         name = "+GoTo",
         r = { "<cmd>lua require('navigator.reference').reference()<cr>", "Reference" },
@@ -41,7 +40,16 @@ function M.setup()
     -- {key = "]d<cr>", func = "<cmd>lua vim.lsp.diagnostic.goto_next({ border = 'rounded', max_width = 80})<cr>"},
     -- {key = "[d<cr>", func = "<cmd>lua vim.lsp.diagnostic.goto_prev({ border = 'rounded', max_width = 80})<cr>"},
     }
-  })
+  }, { mode = 'n' })
+
+  -- Visual Bindings
+  wk.register({
+    ["<leader>L"] = {
+      name = "+LSP",
+      c = { "<cmd>lua vim.lsp.buf.range_code_action()<cr>", "Code Action on Range", mode="v" },
+      f = { "<cmd>lua vim.lsp.buf.range_formatting()<cr>", "Range Format", mode="v" },
+    }
+  }, { mode = 'v' })
 end
 
 return M

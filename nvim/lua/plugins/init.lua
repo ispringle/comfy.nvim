@@ -130,7 +130,6 @@ require('mkdir')
 require('surround').setup({ mapping_style = "surround" })
 require('lightspeed')
 require('numb').setup()
--- require('plugins/tree')
 
 require('plugins.windows').setup()
 require('bufdel').setup({ next = 'cycle', quit = true, })

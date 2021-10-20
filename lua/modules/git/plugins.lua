@@ -2,6 +2,7 @@ local M = {}
 
 function M.setup()
   require('neogit').setup({
+    default_kind = 'split',
     disable_signs = false,
     disable_hint = false,
     disable_context_highlighting = false,

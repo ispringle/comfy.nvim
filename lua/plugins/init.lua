@@ -19,13 +19,20 @@ require('paq'){
   'savq/paq-nvim'; -- The Paq Package Manager
   'nvim-lua/plenary.nvim'; -- Lua/Vim helper functions, req for many a plugin
   'Olical/aniseed'; -- A lang. for Lua. Req for something...
-  'rmagatti/auto-session'; -- TODO setup and use this
-  'nvim-telescope/telescope.nvim'; -- Le Supreme Fuzzy Finder
+  -- 'rmagatti/auto-session'; -- TODO setup and use this
   'kyazdani42/nvim-web-devicons'; -- Icons, but not the Catholic sort
   -- 'yamatsum/nvim-nonicons'; -- web-devicons defaults
   'tpope/vim-repeat'; -- EZ repeat motions
   { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' };
   'folke/which-key.nvim';
+  'b0o/mapx.nvim';
+
+  -- Telescope and Friends
+  'nvim-telescope/telescope.nvim'; -- Le Supreme Fuzzy Finder
+  'nvim-telescope/telescope-symbols.nvim';
+  'sudormrfbin/cheatsheet.nvim';
+  'cljoly/telescope-repo.nvim';
+  { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' };
 
   -- Treesitter and Friends
   { 'nvim-treesitter/nvim-treesitter', branch = vim.fn.has("nvim-0.6.0") == 1 and "master" or "0.5-compat", }; -- Syntax Crawling
@@ -65,13 +72,16 @@ require('paq'){
   'AllenDang/nvim-expand-expr';
   -- { 'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps' };
   -- TODO investigate/try out neogen for auto code annotations
-  'kyazdani42/nvim-tree.lua';
 
   -- Git
   'TimUntersberger/neogit'; -- Magit, but in Blessed Neovim
+  -- { 'pard68/neogit', branch = "add/default_kind" }; -- Magit, but in Blessed Neovim
   'lewis6991/gitsigns.nvim';
   'ruifm/gitlinker.nvim';
   'sindrets/diffview.nvim';
+
+  -- File
+  'kyazdani42/nvim-tree.lua';
 
   -- Buffers and Windows
   'ojroques/nvim-bufdel';
@@ -89,7 +99,21 @@ require('paq'){
   'gennaro-tedesco/nvim-jqx';
 }
 
-require("telescope").setup()
+  -- Telescope and Friends
+require("telescope").setup({
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = 'smart_case',
+    }
+  }
+})
+require('cheatsheet').setup()
+require('telescope').load_extension('repo')
+require('telescope').load_extension('fzf')
+
 require("plugins.treesitter").setup()
 require('plugins.which-key').setup()
 
@@ -100,7 +124,7 @@ require('mkdir')
 require('surround').setup({ mapping_style = "surround" })
 require('lightspeed')
 require('numb').setup()
-require('plugins/tree')
+-- require('plugins/tree')
 
 require('plugins.windows').setup()
 require('bufdel').setup({ next = 'cycle', quit = true, })

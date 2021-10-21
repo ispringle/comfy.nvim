@@ -6,7 +6,6 @@ local fn = vim.fn
 -- local wo = vim.bo
 
 local g = vim.g
-
 -- local cmd = vim.cmd
 
 local utils = require('utils')
@@ -21,6 +20,7 @@ set.ignorecase = true
 set.laststatus = 2
 set.hlsearch = true
 set.incsearch = true
+set.inccommand = 'split'
 set.conceallevel = 0
 set.autoread = true
 set.mouse = 'a'

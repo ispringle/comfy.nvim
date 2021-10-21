@@ -4,10 +4,9 @@ local wk = require('which-key')
 function M.setup()
   -- Normal Mode
   wk.register({
-    ["<leader>G"] = {
+    ["<leader>g"] = {
       name = "+Git",
       b = { '<cmd>lua require("gitsigns").toggle_current_line_blame()<cr>', "Blame Line" },
-      G = { "<cmd>Neogit kind=split<cr>", "Open Neogit" },
       H = { 
         name = "+Hunk",
         p = { '<cmd>lua require"gitsigns".preview_hunk()<CR>', "Preview" },
@@ -29,7 +28,7 @@ function M.setup()
 
   -- Visual Mode
   wk.register({
-    ["<leader>G"] = {
+    ["<leader>g"] = {
       name = "+Git",
       r = { '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>', "Reset Selection" },
       s = { '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>', "Stage Selection" },

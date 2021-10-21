@@ -1,10 +1,12 @@
 local M = {}
 local wk = require('which-key')
+local m = require('mapx')
+
+m.nmap('-', '<cmd>lua require("lir.float").toggle()<cr>')
 
 function M.setup()
   wk.register({
     ["<leader>"] = {
-      T = { "<cmd>lua require('modules/aesthetic/plugins/tabline').toggle_tree()<cr>", "File Tree" },
     }
   })
 

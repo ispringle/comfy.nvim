@@ -1,5 +1,11 @@
 local m = require('mapx').setup({ global = true })
 
+-- Ex-Mode? I'll pass
+m.nmap('Q', 'gq')
+
+-- `;` to open command w/ Nredir prefixed
+m.nnoremap(';', ':Nredir ')
+
 -- Hard mode
 m.noremap('<down>', '<Nop>')
 m.noremap('<up>', '<Nop>')

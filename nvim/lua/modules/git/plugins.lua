@@ -1,20 +1,8 @@
 local M = {}
 
 function M.setup()
-  require('neogit').setup({
-    default_kind = 'split',
-    disable_signs = false,
-    disable_hint = false,
-    disable_context_highlighting = false,
-    disable_commit_confirmation = false,
-    auto_refresh = true,
-    disable_builtin_notifications = false,
-    commit_popup = {
-        kind = "split",
-    },
-    integrations = { diffview = true },
-  })
-  -- TODO configure require('diffview') for use outside of neogit
+  -- TODO configure require('diffview')
+
   require('gitsigns').setup({
     keymaps = {
     noremap = true,
@@ -27,6 +15,7 @@ function M.setup()
     ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
   },
   })
+
   require('gitlinker').setup({ mappings = nil })
 end
 

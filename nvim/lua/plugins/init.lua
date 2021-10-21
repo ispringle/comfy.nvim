@@ -70,21 +70,23 @@ paq {
   'jghauser/mkdir.nvim'; -- mkdir on save if dir doesn't exist
   'blackCauldron7/surround.nvim'; -- like tpope's surround, but Luafied
   'ggandor/lightspeed.nvim'; -- vim-sneak w/ a jetpack
-  'p00f/nvim-ts-rainbow';
-  'nacro90/numb.nvim';
-  'AllenDang/nvim-expand-expr';
+  'p00f/nvim-ts-rainbow'; -- rainbow parens
+  'nacro90/numb.nvim'; -- peek at lines with :123
+  'AllenDang/nvim-expand-expr'; -- define expressions and then "expand" them
+  'sbulav/nredir.nvim'; -- redirect command output to buffer
   -- { 'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps' };
   -- TODO investigate/try out neogen for auto code annotations
 
   -- Git
-  'TimUntersberger/neogit'; -- Magit, but in Blessed Neovim
-  -- { 'pard68/neogit', branch = "add/default_kind" }; -- Magit, but in Blessed Neovim
   'lewis6991/gitsigns.nvim';
   'ruifm/gitlinker.nvim';
   'sindrets/diffview.nvim';
 
   -- File
-  'kyazdani42/nvim-tree.lua';
+  'tamago324/lir.nvim';
+  'tamago324/lir-git-status.nvim';
+  'tamago324/lir-mmv.nvim';
+  'tamago324/lir-bookmark.nvim';
 
   -- Buffers and Windows
   'ojroques/nvim-bufdel';
@@ -99,6 +101,7 @@ paq {
 
   -- Language Support
   'folke/lua-dev.nvim';
+  'rafcamlet/nvim-luapad';
   'gennaro-tedesco/nvim-jqx';
 }
 

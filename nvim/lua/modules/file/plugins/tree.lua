@@ -1,89 +1,111 @@
 local M = {}
 
-local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+local actions = require'lir.actions'
+local mark_actions = require 'lir.mark.actions'
+local clipboard_actions = require'lir.clipboard.actions'
+local b_actions = require'lir.bookmark.actions'
 
-M.config = {
-  disable_netrw       = true,
-  hijack_netrw        = false,
-  open_on_setup       = false,
-  ignore_ft_on_setup  = {},
-  auto_close          = true,
-  open_on_tab         = false,
-  update_to_buf_dir   = {
-    enable = true,
-    auto_open = true,
-  },
-  hijack_cursor       = false,
-  update_cwd          = false,
-  diagnostics = {
-    enable = true,
-    icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
-    }
-  },
-  -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
-  update_focused_file = {
-    enable      = false,
-    update_cwd  = false,
-    ignore_list = {}
-  },
-  system_open = {
-    cmd  = nil,
-    args = {}
-  },
-  view = {
-    width = 30,
-    height = 30,
-    side = 'left',
-    auto_resize = false,
-    mappings = {
-      -- custom only false will merge the list with the default mappings
-      -- if true, it will only use your list to set the mappings
-      custom_only = true,
-      -- list of mappings to set on the tree manually
-      list = {
-        { key = {"<CR>", "o", "<Tab>"}, cb = tree_cb("edit") },
-        { key = "C",    cb = tree_cb("cd") },
-        { key = "V",                        cb = tree_cb("vsplit") },
-        { key = "S",                        cb = tree_cb("split") },
-        { key = "T",                        cb = tree_cb("tabnew") },
-        { key = "<",                            cb = tree_cb("prev_sibling") },
-        { key = ">",                            cb = tree_cb("next_sibling") },
-        { key = "P",                            cb = tree_cb("parent_node") },
-        { key = "<BS>",                         cb = tree_cb("close_node") },
-        { key = "<S-CR>",                       cb = tree_cb("close_node") },
-        { key = "<Tab>",                        cb = tree_cb("preview") },
-        { key = "K",                            cb = tree_cb("first_sibling") },
-        { key = "J",                            cb = tree_cb("last_sibling") },
-        { key = "I",                            cb = tree_cb("toggle_ignored") },
-        { key = "H",                            cb = tree_cb("toggle_dotfiles") },
-        { key = "R",                            cb = tree_cb("refresh") },
-        { key = "a",                            cb = tree_cb("create") },
-        { key = "d",                            cb = tree_cb("remove") },
-        { key = "r",                            cb = tree_cb("rename") },
-        { key = "<C-r>",                        cb = tree_cb("full_rename") },
-        { key = "x",                            cb = tree_cb("cut") },
-        { key = "c",                            cb = tree_cb("copy") },
-        { key = "p",                            cb = tree_cb("paste") },
-        { key = "y",                            cb = tree_cb("copy_name") },
-        { key = "Y",                            cb = tree_cb("copy_path") },
-        { key = "gy",                           cb = tree_cb("copy_absolute_path") },
-        { key = "[c",                           cb = tree_cb("prev_git_item") },
-        { key = "]c",                           cb = tree_cb("next_git_item") },
-        { key = "-",                            cb = tree_cb("dir_up") },
-        { key = "s",                            cb = tree_cb("system_open") },
-        { key = "q",                            cb = tree_cb("close") },
-        { key = "?",                           cb = tree_cb("toggle_help") },
-      }
-    }
-  }
-}
 
 function M.setup()
-  require('nvim-tree').setup(M.config)
+  require'lir'.setup {
+    show_hidden_files = false,
+    devicons_enable = true,
+    mappings = {
+      ['l']     = actions.edit,
+      ['o']     = actions.edit,
+      ['<cr>']     = actions.edit,
+      ['S'] = actions.split,
+      ['V'] = actions.vsplit,
+      ['T'] = actions.tabedit,
+
+      ['B']     = require'lir.bookmark.actions'.list,
+      ['ba']     = require'lir.bookmark.actions'.add,
+
+      ['h']     = actions.up,
+      ['q']     = actions.quit,
+
+      ['K']     = actions.mkdir,
+      ['M']     = require'lir.mmv.actions'.mmv,
+      ['N']     = actions.newfile,
+      ['R']     = actions.rename,
+      ['@']     = actions.cd,
+      ['y']     = actions.yank_path,
+      ['.']     = actions.toggle_show_hidden,
+      ['D']     = actions.delete,
+
+      ['J'] = function()
+        mark_actions.toggle_mark()
+        vim.cmd('normal! j')
+      end,
+      ['C'] = clipboard_actions.copy,
+      ['X'] = clipboard_actions.cut,
+      ['P'] = clipboard_actions.paste,
+    },
+    float = {
+      winblend = 0,
+      curdir_window = {
+        enable = true,
+        highlight_dirname = true,
+      },
+      win_opts = function()
+        local width = math.floor(vim.o.columns * 0.5)
+        local height = math.floor(vim.o.lines * 0.5)
+        return {
+          border = require("lir.float.helper").make_border_opts({
+            "+", "─", "+", "│", "+", "─", "+", "│",
+          }, "Normal"),
+          width = width,
+          height = height,
+        }
+      end,
+    },
+    hide_cursor = true,
+  }
+
+  -- custom folder icon
+  require'nvim-web-devicons'.set_icon({
+    lir_folder_icon = {
+      icon = "",
+      color = "#7ebae4",
+      name = "LirFolderNode"
+    }
+  })
+
+  -- use visual mode
+  function _G.LirSettings()
+    vim.api.nvim_buf_set_keymap(0, 'x', 'J', ':<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>', {noremap = true, silent = true})
+
+    -- echo cwd
+    vim.api.nvim_echo({{vim.fn.expand('%:p'), 'Normal'}}, false, {})
+
+    -- Close float on exit
+    -- vim.cmd [[augroup LirCloseOnWinLeave]]
+    -- vim.cmd [[  autocmd!]]
+    -- vim.cmd [[  autocmd WinLeave <buffer> if get(w:, 'lir_is_float', v:false) | call nvim_win_close(0, v:true) | endif]]
+    -- vim.cmd [[augroup END]]
+  end
+
+  vim.cmd [[augroup lir-settings]]
+  vim.cmd [[  autocmd!]]
+  vim.cmd [[  autocmd Filetype lir :lua LirSettings()]]
+  vim.cmd [[augroup END]]
+
+  require'lir.git_status'.setup({
+    show_ignored = false
+  })
+
+  require'lir.bookmark'.setup {
+    bookmark_path = '~/.local/share/nvim/lir_bookmark',
+    mappings = {
+      ['l']     = b_actions.edit,
+      ['<C-s>'] = b_actions.split,
+      ['<C-v>'] = b_actions.vsplit,
+      ['<C-t>'] = b_actions.tabedit,
+      ['<C-e>'] = b_actions.open_lir,
+      ['B']     = b_actions.open_lir,
+      ['q']     = b_actions.open_lir,
+    }
+  }
 end
 
-return M
+  return M

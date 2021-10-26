@@ -58,10 +58,13 @@ paq {
   -- A E S T H E T I C
   'Pocco81/Catppuccino.nvim';
   'lukas-reineke/indent-blankline.nvim';
-  'romgrk/barbar.nvim';
   'hoob3rt/lualine.nvim';
   'SmiteshP/nvim-gps';
   -- 'folke/twilight.nvim'; -- Dim the text not near cursor
+
+-- Buffer
+  'akinsho/bufferline.nvim';
+  'romgrk/barbar.nvim';
 
   -- Editor Features
   'numToStr/Comment.nvim'; -- Comment stuff out
@@ -119,6 +122,11 @@ require("telescope").setup({
     }
   }
 })
+
+-- So much random stuff depends on the colorscheme being loaded before _or_
+-- after, but not either. So I'll just load it twice.
+require('modules/aesthetic/plugins/colorscheme').setup()
+
 require('cheatsheet').setup()
 require('telescope').load_extension('repo')
 require('telescope').load_extension('fzf')
@@ -133,8 +141,5 @@ require('mkdir')
 require('surround').setup({ mapping_style = "surround" })
 require('lightspeed')
 require('numb').setup()
-
-require('plugins.windows').setup()
-require('bufdel').setup({ next = 'cycle', quit = true, })
 
 require('nvim-jqx.config')

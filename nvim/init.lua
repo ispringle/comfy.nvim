@@ -15,10 +15,6 @@ vim.g.loaded_remote_plugins = false
 -- vim.opt.filetype = "plugin indent off"
 -- vim.opt.shadafile = "NONE"
 
--- So much random stuff depends on the colorscheme being loaded before _or_
--- after, but not either. So I'll just load it twice.
-require('modules/aesthetic/plugins/colorscheme').setup()
-
 require('settings')
 require('plugins')
 require('mappings')

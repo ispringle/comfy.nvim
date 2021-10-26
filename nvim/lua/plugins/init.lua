@@ -64,7 +64,7 @@ paq {
 
 -- Buffer
   'akinsho/bufferline.nvim';
-  -- 'romgrk/barbar.nvim';
+  'famiu/bufdelete.nvim';
 
   -- Editor Features
   'numToStr/Comment.nvim'; -- Comment stuff out

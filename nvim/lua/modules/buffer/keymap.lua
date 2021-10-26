@@ -26,12 +26,14 @@ function M.setup()
       ['9'] = {"<cmd>BufferLineGoToBuffer 9<cr>", "Goto 9th buffer"},
       ['0'] = {"<cmd>BufferLineGoToBuffer 10<cr>", "Goto 10th buffer"},
       b = {"<cmd>BufferLinePick<cr>", "Pick buffer"},
+      c = {"<cmd>Bdelete<cr>", "Close buffer"},
       C = {"<cmd>BufferLinePickClose<cr>", "Pick buffer to close"},
       L = {"<cmd>BufferLineCloseLeft<cr>", "Close buffe to left"},
       n = {"<cmd>BufferLineCycleNext<cr>", "Goto next buffer"},
       N = {"<cmd>BufferLineCyclePrev<cr>", "Goto prev buffer"},
       m = {"<cmd>BufferLineMoveNext<cr>", "Move current buffer tab right"},
       M = {"<cmd>BufferLineMovePrev<cr>", "Move current buffer tab left"},
+      O = {"<cmd>%bd|e#|bd#<cr>", "Close all other buffers, this WILL destroy window layouts"}, -- TODO migrate away from native bd command
       R = {"<cmd>BufferLineCloseRight<cr>", "Close buffer to right"},
       S = {
         name = "+Sort",
@@ -40,6 +42,7 @@ function M.setup()
         n = {"<cmd>lua require'bufferline'.sort_buffers_by(function (buf_a, buf_b) return buf_a.id < buf_b.id end)", "Sort buffers by buffer number"},
         t = {"<cmd>BufferLineSortByTabs<cr>", "Sort buffers by tabs"},
       },
+      W = {"<cmd>Bwipeout<cr>", "Wipeout buffer"},
     }
   }, { mode = 'n' })
 

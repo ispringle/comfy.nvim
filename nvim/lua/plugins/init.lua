@@ -56,7 +56,7 @@ paq {
   'windwp/nvim-autopairs';
 
   -- A E S T H E T I C
-  'Pocco81/Catppuccino.nvim';
+  'catppuccin/nvim';
   'lukas-reineke/indent-blankline.nvim';
   'hoob3rt/lualine.nvim';
   'SmiteshP/nvim-gps';

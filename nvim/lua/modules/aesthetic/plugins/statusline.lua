@@ -21,7 +21,7 @@ function M.setup()
     options = {
       icons_enabled = 1,
       padding = 1,
-      theme = 'catppuccino',
+      theme = 'catppuccin',
     },
   })
 end

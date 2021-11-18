@@ -1,15 +1,14 @@
 local M = {}
 
 function M.setup()
-  local catppuccino = require("catppuccino")
+  local catppuccin = require("catppuccin")
 
-  catppuccino.before_loading = function()
+  catppuccin.before_loading = function()
   end
 
   -- configure it
-  catppuccino.setup({
-    colorscheme = "neon_latte",
-    transparency = false,
+  catppuccin.setup({
+    transparent_background = false,
     term_colors = false,
     styles = {
       comments = "italic",
@@ -33,16 +32,16 @@ function M.setup()
           hints = "underline",
           warnings = "underline",
           information = "underline",
-        }
+        },
       },
       lsp_trouble = true,
       lsp_saga = false,
-      gitgutter = false,
+      gitgutter = true,
       gitsigns = true,
       telescope = true,
       nvimtree = {
-        enabled = true,
-        show_root = true,
+        enabled = false,
+        show_root = false,
       },
       which_key = true,
       indent_blankline = {
@@ -50,8 +49,8 @@ function M.setup()
         colored_indent_levels = false,
       },
       dashboard = false,
-      neogit = true,
-      vim_sneak = false,
+      neogit = false,
+      vim_sneak = true,
       fern = false,
       barbar = true,
       bufferline = false,
@@ -59,11 +58,11 @@ function M.setup()
       lightspeed = true,
       ts_rainbow = true,
       hop = false,
-    }
+    },
   }
   )
 
-  vim.cmd[[colorscheme catppuccino]]
+  vim.cmd[[colorscheme catppuccin]]
 end
 
 return M

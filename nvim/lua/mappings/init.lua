@@ -32,3 +32,4 @@ m.vnoremap('<Tab>', '>gv', 'silent')
 
 require('mappings.toggle')
 require('mappings.window')
+require('mappings.find')

@@ -13,12 +13,14 @@ return packer.startup(function(use)
   use "nathom/filetype.nvim" -- Faster FT
   use { "wbthomason/packer.nvim", event = "VimEnter" } -- Le Package Manager
   use { "nvim-lua/plenary.nvim", event = "BufRead", } -- Boilerplater
-  use { "nvim-lua/popup.nvim", after = "plenary.nvim", } -- Pop!
+  use { "nvim-lua/popup.nvim", after = {"plenary.nvim"}, } -- Pop!
 
   -- UI
   use {
     "mcchrish/zenbones.nvim", -- Like a colorscheme, but without colors...
-    requires = {{"rktjmp/lush.nvim", opt = true}},
+    requires = {
+      {"rktjmp/lush.nvim", opt = true}
+    },
     config = vim.cmd[["colorscheme zenwritten"]]
   }
 
@@ -26,7 +28,7 @@ return packer.startup(function(use)
     "nvim-lualine/lualine.nvim", -- Statusline, but in Lua
     requires = {"kyazdani42/nvim-web-devicons"},
     after = {"zenbones.nvim"},
-    config = require(pd.."lualine"),
+    config = "require'lualine-config'"
   }
 
   use {
@@ -36,8 +38,8 @@ return packer.startup(function(use)
 
   use{
     "lukas-reineke/indent-blankline.nvim", -- Make indents visible
-    after = "zenbones.nvim",
-    config = require(pd.."indent-blankline"),
+    after = {"zenbones.nvim"},
+    config = "require'indent-blankline-config'"
   }
 
   -- Completion
@@ -48,18 +50,18 @@ return packer.startup(function(use)
     event = "InsertEnter", -- InsertCharPre
     after = {"LuaSnip"}, -- "nvim-snippy",
     requires = {
-      {"hrsh7th/cmp-buffer", after = "nvim-cmp", opt = true},
-      {"hrsh7th/cmp-nvim-lua", after = "nvim-cmp", opt = true},
-      {"hrsh7th/cmp-calc", after = "nvim-cmp", opt = true},
-      {"hrsh7th/cmp-path", after = "nvim-cmp", opt = true},
-      {"hrsh7th/cmp-cmdline", after = "nvim-cmp", opt = true},
-      {"lukas-reineke/cmp-under-comparator", after = "nvim-cmp", opt = true},
-      {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp", opt = true},
-      {"f3fora/cmp-spell", after = "nvim-cmp", opt = true},
-      {"octaltree/cmp-look", after = "nvim-cmp", opt = true},
+      {"hrsh7th/cmp-buffer", after = {"nvim-cmp"}, opt = true},
+      {"hrsh7th/cmp-nvim-lua", after = {"nvim-cmp"}, opt = true},
+      {"hrsh7th/cmp-calc", after = {"nvim-cmp"}, opt = true},
+      {"hrsh7th/cmp-path", after = {"nvim-cmp"}, opt = true},
+      {"hrsh7th/cmp-cmdline", after = {"nvim-cmp"}, opt = true},
+      {"lukas-reineke/cmp-under-comparator", after = {"nvim-cmp"}, opt = true},
+      {"hrsh7th/cmp-nvim-lsp", after = {"nvim-cmp"}, opt = true},
+      {"f3fora/cmp-spell", after = {"nvim-cmp"}, opt = true},
+      {"octaltree/cmp-look", after = {"nvim-cmp"}, opt = true},
       {"saadparwaiz1/cmp_luasnip", after = {"nvim-cmp", "LuaSnip"}},
     },
-    config = require(pd..'completion').cmp()
+    config = "require'cmp-config'"
 }
 
 -- can not lazyload, it is also slow...
@@ -67,7 +69,7 @@ return packer.startup(function(use)
     "L3MON4D3/LuaSnip",
     event = "InsertEnter",
     requires = {"rafamadriz/friendly-snippets", event = "InsertEnter"}, -- , event = "InsertEnter"
-    config = require(pd..'completion').luasnip()
+    config = "require'luasnip-config'"
 }
 
 end)

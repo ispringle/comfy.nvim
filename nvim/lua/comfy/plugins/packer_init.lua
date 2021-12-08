@@ -1,5 +1,7 @@
 local cmd = vim.cmd
 
+vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "11.3")
+
 cmd "packadd packer.nvim"
 
 local present, packer = pcall(require, "packer")

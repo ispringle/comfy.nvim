@@ -26,13 +26,13 @@ return packer.startup(function(use)
   -- Aesthetic
   use {
     "mcchrish/zenbones.nvim", -- Like a colorscheme, but without colors...
-    requires = {
-      {
-        "rktjmp/lush.nvim", opt = true,
-        cmd = {"Lushify", "LushImport", "LushRunTutorial", "LushRnQuickstart"}
-      }
-    },
+    -- after = "lush.nvim",
     config = "vim.cmd('colorscheme zenwritten')"
+  }
+
+  use { -- TODO: Figure out how to make this an optional plugin
+        "rktjmp/lush.nvim",
+        -- cmd = {"Lushify", "LushImport", "LushRunTutorial", "LushRnQuickstart"}
   }
 
   use {
@@ -138,9 +138,13 @@ return packer.startup(function(use)
     },
   }
 
+  use { -- TODO: Figure out how to make this an optional plugin
+    'ray-x/guihua.lua',
+    run = 'cd lua/fzy && make'
+  }
   use {
     "ray-x/navigator.lua", -- We use this to manage LSP setup
-    requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
+    -- requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
   } -- branch = "nvim-lsp-installer" ?
 
   -- Completion

@@ -18,6 +18,11 @@ return packer.startup(function(use)
   use { "wbthomason/packer.nvim", event = "VimEnter" } -- Le Package Manager
   use { "nvim-lua/plenary.nvim", event = "BufRead", } -- Boilerplater
   use { "nvim-lua/popup.nvim", after = {"plenary.nvim"}, } -- Pop!
+  use { "Olical/aniseed" } -- A compiler for Fennel
+
+  -- Keymapping
+  use { 'folke/which-key.nvim' }
+  use {'b0o/mapx.nvim' }
 
   -- -------------- --
   -- User Interface --
@@ -44,7 +49,6 @@ return packer.startup(function(use)
 
   use {
     "kyazdani42/nvim-web-devicons", -- Icons, but not the Catholic sort
-    opt = true,
   }
 
   use{
@@ -103,6 +107,19 @@ return packer.startup(function(use)
   use { "ojroques/nvim-bufdel" }
   use { "beauwilliams/focus.nvim" }
 
+  -- File system
+  use {
+    "tamago324/lir.nvim",
+    requires = {
+      { "tamago324/lir-git-status.nvim", },
+      { "tamago324/lir-mmv.nvim", },
+      { "tamago324/lir-bookmark.nvim", },
+    },
+    config = "require'lir-config'",
+    after = { "mapx.nvim", "nvim-web-devicons" },
+    opt = false,
+  }
+
   -- -------- --
   -- Wizardry --
   -- -------- --
@@ -144,8 +161,10 @@ return packer.startup(function(use)
   }
   use {
     "ray-x/navigator.lua", -- We use this to manage LSP setup
+    -- config = "require'navigator-config'",
     -- requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
-  } -- branch = "nvim-lsp-installer" ?
+    opt = false,
+  }
 
   -- Completion
   use {
@@ -164,7 +183,7 @@ return packer.startup(function(use)
       {"f3fora/cmp-spell", after = {"nvim-cmp"}, opt = true},
       {"octaltree/cmp-look", after = {"nvim-cmp"}, opt = true},
       {"saadparwaiz1/cmp_luasnip", after = {"nvim-cmp", "LuaSnip"}},
-      {"windwp/nvim-autopairs", event = "InsertEnter", opt = true},
+      {"windwp/nvim-autopairs", event = "InsertEnter", opt = true, config = "require'autopairs-config'"},
     },
     config = "require'cmp-config'"
 }
@@ -188,15 +207,18 @@ return packer.startup(function(use)
 
   -- Lua
   use {
-    "folke/lua-dev.nvim",
-    opt = true,
-    ft = "lua",
+    "folke/lua-dev.nvim", -- TODO: Figure out lazy-loading for this guy
+    -- opt = true,
+    -- ft = "lua",
+    config = "require'lang.lua'.luadev()"
   }
 
   use {
-    "bfredl/nvim-luadev",
+    "bfredl/nvim-luadev", -- TODO: Figure out lazy-loading for this guy
     opt = true,
-    cmd = {"Luadev-Runline", "Luadev-Run", "Luadev-RunWord", "Luadev-Complete"},
+    ft = "lua",
+    cmd = "Luadev"
+    -- config = "require'lang.lua'.nvim-luadev()"
   }
 
 end)

@@ -17,12 +17,10 @@ end
 local paq = require('paq')
 paq {
   -- The Bear Essentials
-  'Olical/aniseed'; -- A lang. for Lua. Req for something...
   -- 'rmagatti/auto-session'; -- TODO setup and use this
   -- 'yamatsum/nvim-nonicons'; -- web-devicons defaults
   'tpope/vim-repeat'; -- EZ repeat motions
   'folke/which-key.nvim';
-  'b0o/mapx.nvim';
 
   -- Telescope and Friends
   'nvim-telescope/telescope.nvim'; -- Le Supreme Fuzzy Finder

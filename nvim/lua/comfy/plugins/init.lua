@@ -58,6 +58,11 @@ return packer.startup(function(use)
 
   -- Editor Features
 
+  use {
+    "ethanholz/nvim-lastplace",
+    config = "require'nvim-lastplace'.setup()",
+  }
+
   use "haringsrob/nvim_context_vt"
   use {
     "karb94/neoscroll.nvim",

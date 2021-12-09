@@ -15,7 +15,7 @@ return packer.startup(function(use)
   use { "lewis6991/impatient.nvim", rocks = "mpack" } -- I can haz speed?
   use "nathom/filetype.nvim" -- Faster FT
   use { "wbthomason/packer.nvim", event = "VimEnter" } -- Le Package Manager
-  use { "nvim-lua/plenary.nvim", event = "BufRead", } -- Boilerplater
+  use { "nvim-lua/plenary.nvim" } --, event = "BufRead", } -- Boilerplater
   use { "nvim-lua/popup.nvim", after = {"plenary.nvim"}, } -- Pop!
   use { "Olical/aniseed" } -- A compiler for Fennel
 

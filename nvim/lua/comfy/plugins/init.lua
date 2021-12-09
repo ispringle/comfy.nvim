@@ -1,5 +1,4 @@
 local present, packer = pcall(require, "comfy.plugins.packer_init")
-local pd = "comfy/plugins/"
 
 if not present then
   return false
@@ -58,6 +57,12 @@ return packer.startup(function(use)
   }
 
   -- Editor Features
+
+  use "haringsrob/nvim_context_vt"
+  use {
+    "karb94/neoscroll.nvim",
+    config = "require'neoscroll'.setup()"
+  }
   use {
     "numToStr/Comment.nvim", -- Comment stuff out
     config = "require('Comment').setup()",
@@ -95,11 +100,16 @@ return packer.startup(function(use)
     config = "require('numb').setup()",
   }
 
+  use "tversteeg/registers.nvim"
+  use {
+    "chentau/marks.nvim",
+    config = "require'marks-config'",
+  }
   use { "sbulav/nredir.nvim" } -- redirect command output to buffer
 
   -- Buffers and Windows and Tabs, Oh My!
   use {
-    "akinsho/bufferline.nvim", 
+    "akinsho/bufferline.nvim",
     after = "nvim-web-devicons",
   }
 
@@ -152,6 +162,7 @@ return packer.startup(function(use)
       { "folke/trouble.nvim", opt = false },
       -- LSP powered function signatures
       { "ray-x/lsp_signature.nvim",  opt = false },
+      { "glepnir/lspsaga.nvim",  opt = false },
     },
   }
 
@@ -219,6 +230,22 @@ return packer.startup(function(use)
     ft = "lua",
     cmd = "Luadev"
     -- config = "require'lang.lua'.nvim-luadev()"
+  }
+
+  use {
+    "euclidianAce/BetterLua.vim", -- Better Lua syntax
+    opt = true,
+    ft = "lua",
+  }
+
+  -- ------------ --
+  -- Productivity --
+  -- ------------ --
+
+  use {
+    "nvim-neorg/neorg",
+    config = "require'neorg-config'",
+    requires = "nvim-lua/plenary.nvim",
   }
 
 end)

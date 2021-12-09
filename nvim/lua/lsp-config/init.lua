@@ -53,6 +53,7 @@ function M.setup()
     lsp_installer = true,
   })
   require('lsp_signature').setup()
+  require('lspsaga').init_lsp_saga()
   setup_trouble()
 end
 

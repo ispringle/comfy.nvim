@@ -248,9 +248,8 @@ return packer.startup(function(use)
   -- ------------ --
 
   use {
-    "nvim-neorg/neorg",
-    config = "require'neorg-config'",
-    requires = "nvim-lua/plenary.nvim",
+    "glacambre/firenvim",
+    run = function() vim.fn['firenvim#install'](0) end,
   }
 
 end)

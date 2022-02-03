@@ -15,7 +15,4 @@ vim.g.loaded_remote_plugins = false
 -- vim.opt.filetype = "plugin indent off"
 -- vim.opt.shadafile = "NONE"
 
-require('settings')
-require('plugins')
-require('mappings')
-require('modules')
+require('comfy')

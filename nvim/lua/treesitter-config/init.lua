@@ -86,6 +86,17 @@ function M.setup()
         --   },
     },
 } }
+
+local fname = vim.fn.expand("%:p:f")
+local fsize = vim.fn.getfsize(fname)
+if fsize > 1024 * 1024 then
+  print("disable syntax_folding")
+  vim.api.nvim_command("set foldmethod=indent")
+  return
+end
+vim.api.nvim_command("set foldmethod=expr")
+vim.api.nvim_command("set foldexpr=nvim_treesitter#foldexpr()")
+
 end
 
 M.setup()

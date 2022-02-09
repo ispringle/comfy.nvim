@@ -22,7 +22,7 @@ return packer.startup(function(use)
   -- Keymapping
   use {
     'folke/which-key.nvim',
-    config = "reqiure'whichkey-config'"
+    config = "require'whichkey-config'"
   }
   use {'b0o/mapx.nvim' }
 

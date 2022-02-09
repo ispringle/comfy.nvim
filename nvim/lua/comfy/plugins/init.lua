@@ -20,7 +20,10 @@ return packer.startup(function(use)
   use { "Olical/aniseed" } -- A compiler for Fennel
 
   -- Keymapping
-  use { 'folke/which-key.nvim' }
+  use {
+    'folke/which-key.nvim',
+    config = "reqiure'whichkey-config'"
+  }
   use {'b0o/mapx.nvim' }
 
   -- -------------- --

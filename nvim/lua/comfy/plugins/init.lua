@@ -250,9 +250,9 @@ return packer.startup(function(use)
   -- Productivity --
   -- ------------ --
 
-  use {
-    "glacambre/firenvim",
-    run = function() vim.fn['firenvim#install'](0) end,
-  }
+  -- use {
+  --   "glacambre/firenvim",
+  --   run = function() vim.fn['firenvim#install'](0) end,
+  -- }
 
 end)

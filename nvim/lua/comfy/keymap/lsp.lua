@@ -1,7 +1,6 @@
 local M = {}
-local wk = require('which-key')
 
-function M.setup()
+function M.setup(wk)
   -- Normal Bindings
   wk.register({
     ["<leader>L"] = {

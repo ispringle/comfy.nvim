@@ -16,6 +16,7 @@ function M.setup()
 
   require('navigator').setup({
     -- ts_fold = true,
+    default_mapping = false,
     treesitter_analysis = true,
     lsp_signature_help = true,
     lsp_installer = true,

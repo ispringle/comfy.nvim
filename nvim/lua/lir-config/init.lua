@@ -5,7 +5,6 @@ local mark_actions = require 'lir.mark.actions'
 local clipboard_actions = require'lir.clipboard.actions'
 local b_actions = require'lir.bookmark.actions'
 
-
 function M.setup()
   require'lir'.setup {
     show_hidden_files = false,
@@ -60,30 +59,20 @@ function M.setup()
       end,
     },
     hide_cursor = true,
+    on_init = function()
+      -- use visual mode
+      vim.api.nvim_buf_set_keymap(
+        0,
+        "x",
+        "J",
+        ':<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>',
+        { noremap = true, silent = true }
+      )
+
+      -- echo cwd
+      vim.api.nvim_echo({ { vim.fn.expand("%:p"), "Normal" } }, false, {})
+    end,
   }
-
-  -- custom folder icon
-  require'nvim-web-devicons'.set_icon({
-    lir_folder_icon = {
-      icon = "",
-      color = "#7ebae4",
-      name = "LirFolderNode"
-    }
-  })
-
-  -- use visual mode
-  function _G.LirSettings()
-    vim.api.nvim_buf_set_keymap(0, 'x', 'J', ':<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>', {noremap = true, silent = true})
-
-    -- echo cwd
-    vim.api.nvim_echo({{vim.fn.expand('%:p'), 'Normal'}}, false, {})
-
-    -- Close float on exit
-    -- vim.cmd [[augroup LirCloseOnWinLeave]]
-    -- vim.cmd [[  autocmd!]]
-    -- vim.cmd [[  autocmd WinLeave <buffer> if get(w:, 'lir_is_float', v:false) | call nvim_win_close(0, v:true) | endif]]
-    -- vim.cmd [[augroup END]]
-  end
 
   vim.cmd [[augroup lir-settings]]
   vim.cmd [[  autocmd!]]

@@ -8,6 +8,17 @@ function M.setup()
     code_lens = true,
     servers = { "beancount", "cmake", "zeta_note", "taplo", "lemminx", "ansiblels", -- "awk_ls",
       "cssmodules_ls", "diagnosticls", "eslint", "emmet_ls", "remark_ls", },
+
+    -- language server specific settings/overrides
+    rust_analyzer = {
+      settings = {
+        rust_analyzer = {
+          checkOnSave = {
+            extraArgs = {"--target-dir", "/tmp/rust-analyzer-check"}
+          }
+        }
+      }
+    }
   }
 
   for name, settings in pairs(server_settings) do

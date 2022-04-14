@@ -1,5 +1,7 @@
 local M = {}
 
+local lspkind = require'lspkind'
+
 function M.setup()
   local cmp = require('cmp')
   local has_words_before = function()
@@ -57,26 +59,10 @@ function M.setup()
       completeopt = "menu,menuone,noselect"
     },
     formatting = {
-      format = function(entry, vim_item)
-        -- print(vim.inspect(vim_item.kind))
-        if cmp_kind == nil then
-          cmp_kind = require"navigator.lspclient.lspkind".cmp_kind
-        end
-        vim_item.kind = cmp_kind(vim_item.kind)
-        vim_item.menu = ({
-          buffer = "[BUF]",
-          nvim_lsp = "[LSP]",
-          luasnip = "[SNP]",
-          treesitter = "[TRE]",
-          nvim_lua = "[LUA]",
-          spell = "[DCT]",
-          calc = "[CAL]",
-          path = "[PTH]",
-          emoji = "[EMJ]",
-          look = "[LOK]",
-        })[entry.source.name]
-        return vim_item
-      end
+      format = lspkind.cmp_format({
+        mode = 'symbol',
+        maxwidth = 50,
+      })
     },
     -- documentation = {
     --   border = "rounded",

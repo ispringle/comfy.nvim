@@ -143,10 +143,22 @@ return packer.startup(function(use)
   -- -------- --
 
   -- Treesitter and Friends
+
+  -- use({
+  --   'nvim-treesitter/nvim-treesitter',
+  --   config = function()
+  --     require('nvim-treesitter.configs').setup({
+  --       ensure_installed = { 'python', 'go', 'javascript' },
+  --       highlight = { enable = true },
+  --     })
+  --   end,
+  --   run = ':TSUpdate',
+  -- })
+
   use {
     "nvim-treesitter/nvim-treesitter",
     event = "BufRead",
-    -- config = "require'treesitter-config'",
+    config = "require'treesitter-config'",
     requires = {
       -- TODO setup textobjects
       { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter", opt = true },
@@ -160,29 +172,34 @@ return packer.startup(function(use)
   }
 
   -- LSP
+  use { "neovim/nvim-lspconfig" }
   use {
-    "neovim/nvim-lspconfig", -- Language Server Protocol stuff
-    config = "require'lsp-config'",
-    requires = {
-      -- Language Server Protocol installer
-      { "williamboman/nvim-lsp-installer", opt = false },
-      -- Better quickfix and diagnostic window
-      { "folke/trouble.nvim", opt = false },
-      -- LSP powered function signatures
-      { "ray-x/lsp_signature.nvim",  opt = false },
-      { "glepnir/lspsaga.nvim",  opt = false },
-    },
+    "williamboman/nvim-lsp-installer",
+    config = "require'lsp-config'"
   }
 
-  use { -- TODO: Figure out how to make this an optional plugin
-    'ray-x/guihua.lua',
-    run = 'cd lua/fzy && make'
-  }
   use {
-    "ray-x/navigator.lua", -- We use this to manage LSP setup
-    -- config = "require'navigator-config'",
-    -- requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
-    opt = false,
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").register_lsp_virtual_lines()
+    end,
+  }
+
+  use {
+    "j-hui/fidget.nvim",
+    config = "require('fidget').setup()"
+  }
+
+  use {
+    "jubnzv/virtual-types.nvim",
+  }
+
+  use { "onsails/lspkind-nvim" }
+
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = "require('trouble').setup {}"
   }
 
   -- Completion

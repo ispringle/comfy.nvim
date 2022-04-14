@@ -12,7 +12,7 @@ return packer.startup(function(use)
   -- ---- --
 
   -- The Bear Essentials
-  use { "lewis6991/impatient.nvim", rocks = "mpack" } -- I can haz speed?
+  use { "lewis6991/impatient.nvim" } -- I can haz speed?
   use "nathom/filetype.nvim" -- Faster FT
   use { "wbthomason/packer.nvim", event = "VimEnter" } -- Le Package Manager
   use { "nvim-lua/plenary.nvim" } --, event = "BufRead", } -- Boilerplater

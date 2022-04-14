@@ -16,7 +16,7 @@ return packer.startup(function(use)
   use "nathom/filetype.nvim" -- Faster FT
   use { "wbthomason/packer.nvim", event = "VimEnter" } -- Le Package Manager
   use { "nvim-lua/plenary.nvim" } --, event = "BufRead", } -- Boilerplater
-  use { "nvim-lua/popup.nvim", after = {"plenary.nvim"}, } -- Pop!
+  use { "nvim-lua/popup.nvim", after = { "plenary.nvim" }, } -- Pop!
   use { "Olical/aniseed" } -- A compiler for Fennel
 
   -- Keymapping
@@ -24,7 +24,7 @@ return packer.startup(function(use)
     'folke/which-key.nvim',
     config = "require'whichkey-config'"
   }
-  use {'b0o/mapx.nvim' }
+  use { 'b0o/mapx.nvim' }
 
   -- -------------- --
   -- User Interface --
@@ -38,14 +38,14 @@ return packer.startup(function(use)
   }
 
   use { -- TODO: Figure out how to make this an optional plugin
-        "rktjmp/lush.nvim",
-        -- cmd = {"Lushify", "LushImport", "LushRunTutorial", "LushRnQuickstart"}
+    "rktjmp/lush.nvim",
+    -- cmd = {"Lushify", "LushImport", "LushRunTutorial", "LushRnQuickstart"}
   }
 
   use {
     "nvim-lualine/lualine.nvim", -- Statusline, but in Lua
-    requires = {"kyazdani42/nvim-web-devicons"},
-    after = {"zenbones.nvim"},
+    requires = { "kyazdani42/nvim-web-devicons" },
+    after = { "zenbones.nvim" },
     config = "require'lualine-config'"
   }
 
@@ -53,9 +53,9 @@ return packer.startup(function(use)
     "kyazdani42/nvim-web-devicons", -- Icons, but not the Catholic sort
   }
 
-  use{
+  use {
     "lukas-reineke/indent-blankline.nvim", -- Make indents visible
-    after = {"zenbones.nvim"},
+    after = { "zenbones.nvim" },
     config = "require'indent-blankline-config'"
   }
 
@@ -162,7 +162,7 @@ return packer.startup(function(use)
     requires = {
       -- TODO setup textobjects
       { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter", opt = true },
-       -- Treesitter go-to definitions and such
+      -- Treesitter go-to definitions and such
       { "nvim-treesitter/nvim-treesitter-refactor", after = "nvim-treesitter", opt = true },
       -- Sets comment strings based on what treesitter says the lang at the cursor is
       { "JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter", opt = true },
@@ -173,6 +173,7 @@ return packer.startup(function(use)
 
   -- LSP
   use { "neovim/nvim-lspconfig" }
+
   use {
     "williamboman/nvim-lsp-installer",
     config = "require'lsp-config'"
@@ -191,46 +192,46 @@ return packer.startup(function(use)
   }
 
   use {
-    "jubnzv/virtual-types.nvim",
-  }
-
-  use { "onsails/lspkind-nvim" }
-
-  use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = "require('trouble').setup {}"
   }
+
+  use { "jubnzv/virtual-types.nvim", }
+  use { "onsails/lspkind-nvim" }
+  use { "lukas-reineke/lsp-format.nvim" }
+  use { 'nanotee/nvim-lsp-basics' }
+  use { 'simrat39/symbols-outline.nvim' }
 
   -- Completion
   use {
     "hrsh7th/nvim-cmp", -- Peak laziness.
     opt = true,
     event = "InsertEnter", -- InsertCharPre
-    after = {"LuaSnip"}, -- "nvim-snippy",
+    after = { "LuaSnip" }, -- "nvim-snippy",
     requires = {
-      {"hrsh7th/cmp-buffer", after = {"nvim-cmp"}, opt = true},
-      {"hrsh7th/cmp-nvim-lua", after = {"nvim-cmp"}, opt = true},
-      {"hrsh7th/cmp-calc", after = {"nvim-cmp"}, opt = true},
-      {"hrsh7th/cmp-path", after = {"nvim-cmp"}, opt = true},
-      {"hrsh7th/cmp-emoji", after = {"nvim-cmp"}, opt = true},
-      {"hrsh7th/cmp-cmdline", after = {"nvim-cmp"}, opt = true},
-      {"hrsh7th/cmp-nvim-lsp", after = {"nvim-cmp"}, opt = true},
-      {"f3fora/cmp-spell", after = {"nvim-cmp"}, opt = true},
-      {"octaltree/cmp-look", after = {"nvim-cmp"}, opt = true},
-      {"saadparwaiz1/cmp_luasnip", after = {"nvim-cmp", "LuaSnip"}},
-      {"windwp/nvim-autopairs", event = "InsertEnter", opt = true, config = "require'autopairs-config'"},
+      { "hrsh7th/cmp-buffer", after = { "nvim-cmp" }, opt = true },
+      { "hrsh7th/cmp-nvim-lua", after = { "nvim-cmp" }, opt = true },
+      { "hrsh7th/cmp-calc", after = { "nvim-cmp" }, opt = true },
+      { "hrsh7th/cmp-path", after = { "nvim-cmp" }, opt = true },
+      { "hrsh7th/cmp-emoji", after = { "nvim-cmp" }, opt = true },
+      { "hrsh7th/cmp-cmdline", after = { "nvim-cmp" }, opt = true },
+      { "hrsh7th/cmp-nvim-lsp", after = { "nvim-cmp" }, opt = true },
+      { "f3fora/cmp-spell", after = { "nvim-cmp" }, opt = true },
+      { "octaltree/cmp-look", after = { "nvim-cmp" }, opt = true },
+      { "saadparwaiz1/cmp_luasnip", after = { "nvim-cmp", "LuaSnip" } },
+      { "windwp/nvim-autopairs", event = "InsertEnter", opt = true, config = "require'autopairs-config'" },
     },
     config = "require'cmp-config'"
-}
+  }
 
   -- can not lazyload, it is also slow...
   use { -- need to be the first to load
     "L3MON4D3/LuaSnip",
     event = "InsertEnter",
-    requires = {"rafamadriz/friendly-snippets", event = "InsertEnter"}, -- , event = "InsertEnter"
+    requires = { "rafamadriz/friendly-snippets", event = "InsertEnter" }, -- , event = "InsertEnter"
     config = "require'luasnip-config'"
-}
+  }
 
   -- --------- --
   -- Languages --
@@ -238,7 +239,7 @@ return packer.startup(function(use)
 
   -- JSON
   use { 'gennaro-tedesco/nvim-jqx',
-        config = "require('nvim-jqx.config')",
+    config = "require('nvim-jqx.config')",
   }
 
   -- Lua

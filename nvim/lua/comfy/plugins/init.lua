@@ -93,7 +93,7 @@ return packer.startup(function(use)
   }
 
   use {
-    "blackCauldron7/surround.nvim", -- like tpope"s surround, but Luafied
+    "ur4ltz/surround.nvim", -- like tpope"s surround, but Luafied
     config = "require('surround').setup({ mapping_style = 'surround' })",
     event = "InsertEnter",
   }

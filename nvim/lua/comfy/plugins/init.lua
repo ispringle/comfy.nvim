@@ -183,6 +183,7 @@ return packer.startup(function(use)
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
       require("lsp_lines").register_lsp_virtual_lines()
+      vim.diagnostic.config({ virtual_lines = false })
     end,
   }
 

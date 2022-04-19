@@ -32,9 +32,9 @@ return packer.startup(function(use)
 
   -- Aesthetic
   use {
-    "mcchrish/zenbones.nvim", -- Like a colorscheme, but without colors...
+    "EdenEast/nightfox.nvim", -- Like a colorscheme, but without colors...
     -- after = "lush.nvim",
-    config = "vim.cmd('colorscheme zenwritten')"
+    config = "vim.cmd('colorscheme duskfox')"
   }
 
   use { -- TODO: Figure out how to make this an optional plugin
@@ -45,7 +45,7 @@ return packer.startup(function(use)
   use {
     "nvim-lualine/lualine.nvim", -- Statusline, but in Lua
     requires = { "kyazdani42/nvim-web-devicons" },
-    after = { "zenbones.nvim" },
+    after = { "nightfox.nvim" },
     config = "require'lualine-config'"
   }
 
@@ -55,7 +55,7 @@ return packer.startup(function(use)
 
   use {
     "lukas-reineke/indent-blankline.nvim", -- Make indents visible
-    after = { "zenbones.nvim" },
+    after = { "nightfox.nvim" },
     config = "require'indent-blankline-config'"
   }
 

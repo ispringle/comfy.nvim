@@ -119,6 +119,7 @@ return packer.startup(function(use)
   use {
     "akinsho/bufferline.nvim",
     after = "nvim-web-devicons",
+    config = "require'bufferline-config'"
   }
 
   use { "famiu/bufdelete.nvim" }
@@ -233,6 +234,18 @@ return packer.startup(function(use)
     requires = { "rafamadriz/friendly-snippets", event = "InsertEnter" }, -- , event = "InsertEnter"
     config = "require'luasnip-config'"
   }
+
+
+  -- --------------------- --
+  -- Telescope and Friends --
+  -- --------------------- --
+
+  -- use 'nvim-telescope/telescope.nvim'; -- Le Supreme Fuzzy Finder
+  -- use 'nvim-telescope/telescope-symbols.nvim';
+  -- use 'sudormrfbin/cheatsheet.nvim';
+  -- use 'cljoly/telescope-repo.nvim';
+  -- use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' };
+
 
   -- --------- --
   -- Languages --

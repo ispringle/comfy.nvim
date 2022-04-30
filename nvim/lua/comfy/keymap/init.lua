@@ -31,5 +31,6 @@ m.vnoremap('>', '>gv', 'silent')
 m.vnoremap('<S-Tab>', '<gv', 'silent')
 m.vnoremap('<Tab>', '>gv', 'silent')
 
-require'comfy.keymap.window'.setup(wk)
-require'comfy.keymap.lsp'.setup(wk)
+require 'comfy.keymap.window'.setup(wk)
+require 'comfy.keymap.lsp'.setup(wk)
+require 'comfy.keymap.buffer'.setup(wk)

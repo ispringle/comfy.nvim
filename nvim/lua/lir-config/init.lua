@@ -1,36 +1,38 @@
 local M = {}
 
-local actions = require'lir.actions'
+local actions = require 'lir.actions'
 local mark_actions = require 'lir.mark.actions'
-local clipboard_actions = require'lir.clipboard.actions'
-local b_actions = require'lir.bookmark.actions'
+local clipboard_actions = require 'lir.clipboard.actions'
+local b_actions = require 'lir.bookmark.actions'
+
+local vim = vim
 
 function M.setup()
-  require'lir'.setup {
+  require 'lir'.setup {
     show_hidden_files = false,
     devicons_enable = true,
     mappings = {
-      ['l']     = actions.edit,
-      ['o']     = actions.edit,
-      ['<cr>']     = actions.edit,
-      ['S'] = actions.split,
-      ['V'] = actions.vsplit,
-      ['T'] = actions.tabedit,
+      ['l']    = actions.edit,
+      ['o']    = actions.edit,
+      ['<cr>'] = actions.edit,
+      ['S']    = actions.split,
+      ['V']    = actions.vsplit,
+      ['T']    = actions.tabedit,
 
-      ['B']     = require'lir.bookmark.actions'.list,
-      ['ba']     = require'lir.bookmark.actions'.add,
+      ['B']  = require 'lir.bookmark.actions'.list,
+      ['ba'] = require 'lir.bookmark.actions'.add,
 
-      ['h']     = actions.up,
-      ['q']     = actions.quit,
+      ['h'] = actions.up,
+      ['q'] = actions.quit,
 
-      ['K']     = actions.mkdir,
-      ['M']     = require'lir.mmv.actions'.mmv,
-      ['N']     = actions.newfile,
-      ['R']     = actions.rename,
-      ['@']     = actions.cd,
-      ['y']     = actions.yank_path,
-      ['.']     = actions.toggle_show_hidden,
-      ['D']     = actions.delete,
+      ['K'] = actions.mkdir,
+      ['M'] = require 'lir.mmv.actions'.mmv,
+      ['N'] = actions.newfile,
+      ['R'] = actions.rename,
+      ['@'] = actions.cd,
+      ['y'] = actions.yank_path,
+      ['.'] = actions.toggle_show_hidden,
+      ['D'] = actions.delete,
 
       ['J'] = function()
         mark_actions.toggle_mark()
@@ -74,16 +76,11 @@ function M.setup()
     end,
   }
 
-  vim.cmd [[augroup lir-settings]]
-  vim.cmd [[  autocmd!]]
-  vim.cmd [[  autocmd Filetype lir :lua LirSettings()]]
-  vim.cmd [[augroup END]]
-
-  require'lir.git_status'.setup({
+  require 'lir.git_status'.setup({
     show_ignored = false
   })
 
-  require'lir.bookmark'.setup {
+  require 'lir.bookmark'.setup {
     bookmark_path = '~/.local/share/nvim/lir_bookmark',
     mappings = {
       ['l']     = b_actions.edit,

@@ -32,9 +32,9 @@ return packer.startup(function(use)
 
   -- Aesthetic
   use {
-    "EdenEast/nightfox.nvim", -- Like a colorscheme, but without colors...
+    "EdenEast/nightfox.nvim",
     -- after = "lush.nvim",
-    config = "vim.cmd('colorscheme duskfox')"
+    config = "require'nightfox-config'"
   }
 
   use { -- TODO: Figure out how to make this an optional plugin

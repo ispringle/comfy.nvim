@@ -13,7 +13,7 @@ function M.setup()
 
   local ts = require('nvim-treesitter.configs')
   ts.setup {
-    ensure_installed = 'maintained',
+    ensure_installed = 'all',
     ignore_install = {
       "c_sharp",
       "cuda",
@@ -23,6 +23,7 @@ function M.setup()
       "glsl",
       "hcl",
       "heex",
+      "norg",
       "ocaml", "ocaml_interface", "ocamllex",
       "pioasm",
       "sparql",

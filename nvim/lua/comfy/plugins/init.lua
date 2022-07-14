@@ -221,6 +221,12 @@ return packer.startup(function(use)
       { "hrsh7th/cmp-nvim-lsp", after = { "nvim-cmp" }, opt = true },
       { "f3fora/cmp-spell", after = { "nvim-cmp" }, opt = true },
       { "octaltree/cmp-look", after = { "nvim-cmp" }, opt = true },
+      use {
+        "tzachar/cmp-tabnine",
+        run = "./install.sh",
+        requires = "hrsh7th/nvim-cmp",
+        after = { "nvim-cmp" }
+      },
       { "saadparwaiz1/cmp_luasnip", after = { "nvim-cmp", "LuaSnip" } },
       { "windwp/nvim-autopairs", event = "InsertEnter", opt = true, config = "require'autopairs-config'" },
     },

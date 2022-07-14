@@ -1,6 +1,6 @@
 local M = {}
 
-local lspkind = require'lspkind'
+local lspkind = require 'lspkind'
 
 function M.setup()
   local cmp = require('cmp')
@@ -23,39 +23,40 @@ function M.setup()
   end
 
   local sources = {
-    {name = 'luasnip'},
-    {name = 'treesitter', keyword_length = 2},
+    { name = 'luasnip' },
+    { name = 'treesitter', keyword_length = 2 },
     { name = "nvim_lsp" },
     { name = "calc" },
     { name = "path" },
     { name = "buffer" },
     { name = "nvim_lua" },
     { name = "emoji" },
-    {name = 'look', keyword_length = 4}
+    { name = 'look', keyword_length = 4 },
+    { name = 'cmp_tabnine' }
   }
   if vim.o.ft == 'sql' then
-    table.insert(sources, {name = 'vim-dadbod-completion'})
+    table.insert(sources, { name = 'vim-dadbod-completion' })
   end
 
   if vim.o.ft == 'norg' then
-    table.insert(sources, {name = 'neorg'})
+    table.insert(sources, { name = 'neorg' })
   end
   if vim.o.ft == 'markdown' then
-    table.insert(sources, {name = 'spell'})
+    table.insert(sources, { name = 'spell' })
   end
   if vim.o.ft == 'lua' then
-    table.insert(sources, {name = 'nvim_lua'})
+    table.insert(sources, { name = 'nvim_lua' })
   end
   cmp.setup {
     snippet = {
       expand = function(args)
-        require'luasnip'.lsp_expand(args.body)
+        require 'luasnip'.lsp_expand(args.body)
         -- require 'snippy'.expand_snippet(args.body)
         -- vim.fn["UltiSnips#Anon"](args.body)
       end
     },
     completion = {
-      autocomplete = {require("cmp.types").cmp.TriggerEvent.TextChanged},
+      autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
       completeopt = "menu,menuone,noselect"
     },
     formatting = {
@@ -75,7 +76,7 @@ function M.setup()
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.close(),
-      ['<CR>'] = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Replace, select = true}),
+      ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
       -- ['<Tab>'] = cmp.mapping(tab, {'i', 's'}),
 
       ["<Tab>"] = cmp.mapping(function(fallback)
@@ -88,7 +89,7 @@ function M.setup()
         else
           fallback()
         end
-      end, {"i", "s"}),
+      end, { "i", "s" }),
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
@@ -97,25 +98,37 @@ function M.setup()
         else
           fallback()
         end
-      end, {"i", "s"})
+      end, { "i", "s" })
 
     },
 
     -- You should specify your *installed* sources.
     sources = sources,
 
-    experimental = {ghost_text = true}
+    experimental = { ghost_text = true }
   }
   local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-  cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({map_char = {tex = ''}}))
-  cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
-  cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "lisp"
-  cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "cl"
+  cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
+  cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
+  cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "lisp"
+  cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "cl"
 
-  require'cmp'.setup.cmdline(':', {sources = {{name = 'cmdline'}}})
-  require'cmp'.setup.cmdline('/', {sources = {{name = 'buffer'}}})
+  local tabnine = require('cmp_tabnine.config')
+  tabnine:setup({
+    max_lines = 1000;
+    max_num_results = 20;
+    sort = true;
+    run_on_every_keystroke = true;
+    snippet_placeholder = "..";
+    ignored_file_types = { -- default is to not ignore
+      -- .gitignore = true
+    };
+    show_prediction_strength = true;
+  })
+  require 'cmp'.setup.cmdline(':', { sources = { { name = 'cmdline' } } })
+  require 'cmp'.setup.cmdline('/', { sources = { { name = 'buffer' } } })
   if vim.o.ft == 'clap_input' or vim.o.ft == 'guihua' or vim.o.ft == 'guihua_rust' then
-    require'cmp'.setup.buffer {completion = {enable = false}}
+    require 'cmp'.setup.buffer { completion = { enable = false } }
   end
   vim.cmd("autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }")
   vim.cmd("autocmd FileType clap_input lua require('cmp').setup.buffer { enabled = false }")

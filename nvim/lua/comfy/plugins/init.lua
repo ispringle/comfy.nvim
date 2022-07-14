@@ -110,7 +110,7 @@ return packer.startup(function(use)
 
   use "tversteeg/registers.nvim"
   use {
-    "chentau/marks.nvim",
+    "chentoast/marks.nvim",
     config = "require'marks-config'",
   }
   use { "sbulav/nredir.nvim" } -- redirect command output to buffer

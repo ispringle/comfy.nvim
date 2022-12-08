@@ -1,38 +1,31 @@
 local M = {}
 
 function M.setup()
-  -- require("lsp-format").setup {}
+  local ts_config = require('typescript')
 
-  local lsp_installer = require "nvim-lsp-installer"
-
-  -- local function on_attach(client, bufnr)
-  --   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  --   require 'virtualtypes'.on_attach(client)
-  --   require 'lsp-format'.on_attach(client)
-  --
-  --   local basics = require('lsp_basics')
-  --   basics.make_lsp_commands(client, bufnr)
-  --   basics.make_lsp_mappings(client, bufnr)
-  -- end
-
-  lsp_installer.setup({
-    automatic_installation = true,
-    log = vim.log.levels.DEBUG,
-    ui = {
-      icons = {
-        server_installed = "✓",
-        server_pending = "➜",
-        server_uninstalled = "✗"
-      }
-    }
-  })
-
-  -- lsp_installer.on_server_ready(function(server)
-  --  server:setup {
-  --    on_attach = on_attach,
-  --  }
-  -- end)
-
+  require("mason").setup()
+  require("mason-lspconfig").setup({})
+  require("mason-lspconfig").setup_handlers {
+      function (server_name) -- default handler (optional)
+          require("lspconfig")[server_name].setup {}
+      end,
+      -- Next, you can provide a dedicated handler for specific servers.
+      -- For example, a handler override for the `rust_analyzer`:
+      ["tsserver"] = function ()
+          ts_config.setup({
+            server = {
+              init_options = {
+                plugins = {
+                  {
+                    name = 'ts-lit-plugin',
+                    location = '~/.asdf/installs/nodejs/18.11.0/lib/node_modules/ts-lit-plugin/'
+                  },
+                },
+              }
+            }
+          })
+      end
+  }
 end
 
 M.setup()

@@ -31,6 +31,8 @@ return packer.startup(function(use)
   -- -------------- --
 
   -- Aesthetic
+  use { "catppuccin/nvim", as = "catppuccin" }
+
   use {
     "mcchrish/zenbones.nvim", -- Like a colorscheme, but without colors...
     -- after = "lush.nvim",
@@ -66,7 +68,7 @@ return packer.startup(function(use)
     config = "require'nvim-lastplace'.setup()",
   }
 
-  use "haringsrob/nvim_context_vt"
+  -- use "haringsrob/nvim_context_vt"
   use {
     "karb94/neoscroll.nvim",
     config = "require'neoscroll'.setup()"
@@ -145,17 +147,6 @@ return packer.startup(function(use)
 
   -- Treesitter and Friends
 
-  -- use({
-  --   'nvim-treesitter/nvim-treesitter',
-  --   config = function()
-  --     require('nvim-treesitter.configs').setup({
-  --       ensure_installed = { 'python', 'go', 'javascript' },
-  --       highlight = { enable = true },
-  --     })
-  --   end,
-  --   run = ':TSUpdate',
-  -- })
-
   use {
     "nvim-treesitter/nvim-treesitter",
     event = "BufRead",
@@ -173,17 +164,20 @@ return packer.startup(function(use)
   }
 
   -- LSP
-  use { "neovim/nvim-lspconfig" }
+  use {
+    "williamboman/mason.nvim",
+    config = "require('lsp-config')"
+  }
 
   use {
-    "williamboman/nvim-lsp-installer",
-    config = "require'lsp-config'"
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
   }
 
   use {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
-      require("lsp_lines").register_lsp_virtual_lines()
+      require("lsp_lines").setup()
       vim.diagnostic.config({ virtual_lines = false })
     end,
   }
@@ -221,13 +215,7 @@ return packer.startup(function(use)
       { "hrsh7th/cmp-nvim-lsp", after = { "nvim-cmp" }, opt = true },
       { "f3fora/cmp-spell", after = { "nvim-cmp" }, opt = true },
       { "octaltree/cmp-look", after = { "nvim-cmp" }, opt = true },
-      use {
-        "tzachar/cmp-tabnine",
-        run = "./install.sh",
-        requires = "hrsh7th/nvim-cmp",
-        after = { "nvim-cmp" }
-      },
-      { "saadparwaiz1/cmp_luasnip", after = { "nvim-cmp", "LuaSnip" } },
+      { "saadparwaiz1/cmp_luasnip", after = { "nvim-cmp", "LuaSnip" }, opt = true },
       { "windwp/nvim-autopairs", event = "InsertEnter", opt = true, config = "require'autopairs-config'" },
     },
     config = "require'cmp-config'"
@@ -246,16 +234,19 @@ return packer.startup(function(use)
   -- Telescope and Friends --
   -- --------------------- --
 
-  -- use 'nvim-telescope/telescope.nvim'; -- Le Supreme Fuzzy Finder
-  -- use 'nvim-telescope/telescope-symbols.nvim';
-  -- use 'sudormrfbin/cheatsheet.nvim';
-  -- use 'cljoly/telescope-repo.nvim';
-  -- use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' };
+  use 'nvim-telescope/telescope.nvim'; -- Le Supreme Fuzzy Finder
+  use 'nvim-telescope/telescope-symbols.nvim';
+  use 'sudormrfbin/cheatsheet.nvim';
+  use 'cljoly/telescope-repo.nvim';
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' };
 
 
   -- --------- --
   -- Languages --
   -- --------- --
+
+  -- JavaScript/TypeScript/other web things
+  use 'jose-elias-alvarez/typescript.nvim'
 
   -- JSON
   use { 'gennaro-tedesco/nvim-jqx',
@@ -264,7 +255,7 @@ return packer.startup(function(use)
 
   -- Lua
   use {
-    "folke/lua-dev.nvim", -- TODO: Figure out lazy-loading for this guy
+    "folke/neodev.nvim", -- TODO: Figure out lazy-loading for this guy
     -- opt = true,
     -- ft = "lua",
     config = "require'lang.lua'.luadev()"

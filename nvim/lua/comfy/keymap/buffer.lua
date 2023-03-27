@@ -24,11 +24,12 @@ function M.setup(wk)
       b = { "<cmd>BufferLinePick<cr>", "Pick buffer" },
       c = { "<cmd>Bdelete<cr>", "Close buffer" },
       C = { "<cmd>BufferLinePickClose<cr>", "Pick buffer to close" },
+      f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format buffer" },
       L = { "<cmd>BufferLineCloseLeft<cr>", "Close buffe to left" },
-      n = { "<cmd>BufferLineCycleNext<cr>", "Goto next buffer" },
-      N = { "<cmd>BufferLineCyclePrev<cr>", "Goto prev buffer" },
       m = { "<cmd>BufferLineMoveNext<cr>", "Move current buffer tab right" },
       M = { "<cmd>BufferLineMovePrev<cr>", "Move current buffer tab left" },
+      n = { "<cmd>BufferLineCycleNext<cr>", "Goto next buffer" },
+      N = { "<cmd>BufferLineCyclePrev<cr>", "Goto prev buffer" },
       O = { "<cmd>%bd|e#|bd#<cr>", "Close all other buffers, this WILL destroy window layouts" }, -- TODO migrate away from native bd command
       R = { "<cmd>BufferLineCloseRight<cr>", "Close buffer to right" },
       S = {

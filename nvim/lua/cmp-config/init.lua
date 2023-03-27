@@ -32,7 +32,6 @@ function M.setup()
     { name = "nvim_lua" },
     { name = "emoji" },
     { name = 'look', keyword_length = 4 },
-    { name = 'cmp_tabnine' }
   }
   if vim.o.ft == 'sql' then
     table.insert(sources, { name = 'vim-dadbod-completion' })
@@ -107,29 +106,16 @@ function M.setup()
 
     experimental = { ghost_text = true }
   }
+
   local cmp_autopairs = require('nvim-autopairs.completion.cmp')
   cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
-  cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
-  cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "lisp"
-  cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "cl"
 
-  local tabnine = require('cmp_tabnine.config')
-  tabnine:setup({
-    max_lines = 1000;
-    max_num_results = 20;
-    sort = true;
-    run_on_every_keystroke = true;
-    snippet_placeholder = "..";
-    ignored_file_types = { -- default is to not ignore
-      -- .gitignore = true
-    };
-    show_prediction_strength = true;
-  })
   require 'cmp'.setup.cmdline(':', { sources = { { name = 'cmdline' } } })
   require 'cmp'.setup.cmdline('/', { sources = { { name = 'buffer' } } })
   if vim.o.ft == 'clap_input' or vim.o.ft == 'guihua' or vim.o.ft == 'guihua_rust' then
     require 'cmp'.setup.buffer { completion = { enable = false } }
   end
+
   vim.cmd("autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }")
   vim.cmd("autocmd FileType clap_input lua require('cmp').setup.buffer { enabled = false }")
 end

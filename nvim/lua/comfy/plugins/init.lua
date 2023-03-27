@@ -22,7 +22,7 @@ return packer.startup(function(use)
   -- Keymapping
   use {
     'folke/which-key.nvim',
-    config = "require'whichkey-config'"
+    config = "require'whichkey-config'",
   }
   use { 'b0o/mapx.nvim' }
 
@@ -137,7 +137,7 @@ return packer.startup(function(use)
       { "tamago324/lir-bookmark.nvim", },
     },
     config = "require'lir-config'",
-    after = { "mapx.nvim", "nvim-web-devicons" },
+    after = { "nvim-web-devicons" },
     opt = false,
   }
 
@@ -195,9 +195,10 @@ return packer.startup(function(use)
 
   use { "jubnzv/virtual-types.nvim", }
   use { "onsails/lspkind-nvim" }
-  use { "lukas-reineke/lsp-format.nvim" }
   use { 'nanotee/nvim-lsp-basics' }
   use { 'simrat39/symbols-outline.nvim' }
+
+  use { 'jose-elias-alvarez/null-ls.nvim', config = "require'null-ls-config'" }
 
   -- Completion
   use {
@@ -258,7 +259,7 @@ return packer.startup(function(use)
     "folke/neodev.nvim", -- TODO: Figure out lazy-loading for this guy
     -- opt = true,
     -- ft = "lua",
-    config = "require'lang.lua'.luadev()"
+    config = "require'lang.lua'.setup()"
   }
 
   use {
@@ -278,6 +279,15 @@ return packer.startup(function(use)
   -- ------------ --
   -- Productivity --
   -- ------------ --
+
+  use {
+    "renerocksai/telekasten.nvim",
+    -- opt = true,
+    config = "require('telekasten-config').setup()",
+    requires = {
+      "renerocksai/calendar-vim"
+    }
+  }
 
   -- use {
   --   "glacambre/firenvim",

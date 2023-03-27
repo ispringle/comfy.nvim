@@ -4,10 +4,21 @@ local M = {}
 --   require'nvim-luadev'
 -- end
 
-function M.luadev()
-  local luadev = require'lua-dev'.setup()
+function M.setup()
+  require'neodev'.setup()
   local lspconfig = require'lspconfig'
-  lspconfig.sumneko_lua.setup(luadev)
+  lspconfig.sumneko_lua.setup({
+    settings = {
+      Lua = {
+        completion = {
+          callSnippet = "Replace",
+        },
+        workspace = {
+          checkThirdParty = false,
+        },
+      },
+    }
+  })
 end
 
 return M

@@ -95,6 +95,3 @@ function M.setup()
 end
 
 M.setup()
-
-local m = require('mapx')
-m.nmap('-', '<cmd>lua require("lir.float").toggle()<cr>')

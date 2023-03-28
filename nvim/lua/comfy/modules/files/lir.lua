@@ -10,7 +10,7 @@ local vim = vim
 function M.setup()
   require 'lir'.setup {
     show_hidden_files = false,
-    devicons_enable = true,
+    devicons = { enable = true },
     mappings = {
       ['l']    = actions.edit,
       ['o']    = actions.edit,
@@ -94,4 +94,4 @@ function M.setup()
   }
 end
 
-M.setup()
+return M

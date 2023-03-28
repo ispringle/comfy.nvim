@@ -1,6 +1,20 @@
-local M = {}
+local M = {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    lazy = false,
+    dependencies = {
+      -- TODO setup textobjects
+      { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter", opt = true },
+      -- Treesitter go-to definitions and such
+      { "nvim-treesitter/nvim-treesitter-refactor", after = "nvim-treesitter", opt = true },
+      -- Sets comment strings based on what treesitter says the lang at the cursor is
+      { "JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter", opt = true },
+      -- Keeps context of current pos at top of file
+      { "romgrk/nvim-treesitter-context", after = "nvim-treesitter", opt = true },
+    },
+}
 
-function M.setup()
+function M.config()
   local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 
   parser_configs.norg = {
@@ -88,16 +102,16 @@ function M.setup()
     },
 } }
 
-local fname = vim.fn.expand("%:p:f")
-local fsize = vim.fn.getfsize(fname)
-if fsize > 1024 * 1024 then
-  print("disable syntax_folding")
-  vim.api.nvim_command("set foldmethod=indent")
-  return
-end
-vim.api.nvim_command("set foldmethod=expr")
-vim.api.nvim_command("set foldexpr=nvim_treesitter#foldexpr()")
+  local fname = vim.fn.expand("%:p:f")
+  local fsize = vim.fn.getfsize(fname)
+  if fsize > 1024 * 1024 then
+    print("disable syntax_folding")
+    vim.api.nvim_command("set foldmethod=indent")
+    return
+  end
+  vim.api.nvim_command("set foldmethod=expr")
+  vim.api.nvim_command("set foldexpr=nvim_treesitter#foldexpr()")
 
 end
 
-M.setup()
+return M

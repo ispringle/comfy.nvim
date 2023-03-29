@@ -2,7 +2,7 @@ local M = {}
 
 M.opts = {
   spec = {
-	  { import = "plugins"},
+	  { import = "comfy.modules"},
   },
   git = {
     log = { "--since=3 days ago" },
@@ -17,7 +17,7 @@ M.opts = {
   },
   install = {
     missing = true,
-    colorscheme = { "habamax" },
+    colorscheme = { "zenwritten", "habamax" },
   },
   ui = {
     custom_keys = {
@@ -44,6 +44,7 @@ M.opts = {
   },
   change_detection = {
     enabled = true,
+    notify = false,
   },
   performance = {
     rtp = {

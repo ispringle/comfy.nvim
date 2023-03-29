@@ -1,42 +1,30 @@
-local M = {}
+local module = "keymapping"
+local M = {
+  dir = module,
+  name = module,
+  dependencies = {
+    "folke/which-key.nvim",
+    "b0o/mapx.nvim",
+    {
+      "mrjones2014/legendary.nvim",
+      dependencies = {
+        'kkharji/sqlite.lua'
+      },
+    },
+  },
+}
 
-function M.setup()
-	require('comfy.modules.keymapping.whichkey').setup()
+function M.config()
+  require('comfy.modules.keymapping.legendary').setup()
+  require('comfy.modules.keymapping.whichkey').setup()
+  require('comfy.modules.keymapping.mappings').setup()
 
-	local wk = require('which-key')
-	local m = require('mapx').setup({ global = true })
-
-	-- Ex-Mode? I'll pass
-	m.nmap('Q', 'gq')
-
-	-- `;` to open command w/ Nredir prefixed
-	m.nnoremap(';', ':Nredir ')
-
-	-- Hard mode
-	m.noremap('<down>', '<Nop>')
-	m.noremap('<up>', '<Nop>')
-	m.noremap('<left>', '<Nop>')
-	m.noremap('<right>', '<Nop>')
-	m.inoremap('<down>', '<Nop>')
-	m.inoremap('<up>', '<Nop>')
-	m.inoremap('<left>', '<Nop>')
-	m.inoremap('<right>', '<Nop>')
-	m.vnoremap('<down>', '<Nop>')
-	m.vnoremap('<up>', '<Nop>')
-	m.vnoremap('<left>', '<Nop>')
-	m.vnoremap('<right>', '<Nop>')
-
-	-- Disable hlsearch highlights
-	m.nnoremap('<leader><space>', ':nohlsearch<CR>')
-
-	-- When indenting in visual select, don't unselect after indent
-	-- Also, tab with <Tab>
-	m.vnoremap('<', '<gv', 'silent')
-	m.vnoremap('>', '>gv', 'silent')
-	m.vnoremap('<S-Tab>', '<gv', 'silent')
-	m.vnoremap('<Tab>', '>gv', 'silent')
-
-	require('comfy.modules.files').keymap(wk)
+  local wk = require('which-key')
+  require('comfy.modules.files').keymap(wk)
+  require('comfy.modules.git').keymap(wk)
+  require('comfy.modules.lsp').keymap(wk)
+  require('comfy.modules.util').keymap(wk)
+  require('comfy.modules.ux').keymap(wk)
 end
 
 return M

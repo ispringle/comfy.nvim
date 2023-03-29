@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.setup(vim)
   -- Ergonomics
   local set = vim.opt
   local fn = vim.fn

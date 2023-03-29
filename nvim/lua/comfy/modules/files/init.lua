@@ -1,7 +1,18 @@
-local M = {}
+local module = "files"
+local M = {
+  dir = module,
+  name = module,
+  dependencies = {
+    "tamago324/lir.nvim",
+    "tamago324/lir-git-status.nvim",
+    "tamago324/lir-mmv.nvim",
+    "tamago324/lir-bookmark.nvim",
+  },
+  key = "<leader>.",
+}
 
-function M.setup()
-	require('comfy.modules.files.lir').setup()
+function M.config()
+  require('comfy.modules.files.lir').setup()
 end
 
 M.keymap = require('comfy.modules.files.keymap').setup

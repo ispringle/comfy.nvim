@@ -20,6 +20,15 @@ local M = {
     "famiu/bufdelete.nvim",
     "ojroques/nvim-bufdel",
 
+    -- UI
+    {
+      "folke/noice.nvim",
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+        "rcarriga/nvim-notify",
+      },
+    },
+
     -- Window
     "beauwilliams/focus.nvim", -- Window splits and movement
 
@@ -55,6 +64,7 @@ function M.config()
   require("nvim-lastplace").setup()
   require("colorizer").setup()
 
+  require("comfy.modules.ux.noice").setup()
   require("comfy.modules.ux.bufferline").setup()
   require("comfy.modules.ux.cinnamon").setup()
   require("comfy.modules.ux.lualine").setup()

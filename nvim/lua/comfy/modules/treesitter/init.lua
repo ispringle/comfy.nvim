@@ -2,8 +2,9 @@ local module = "treesitter"
 local M = {
   dir = module,
   name = module,
+  cond = true,
   dependencies = {
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", lazy = false, },
+    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", lazy = false },
     "nvim-treesitter/nvim-treesitter-textobjects", -- TODO: setup textobjects
     "nvim-treesitter/nvim-treesitter-refactor", -- Treesitter go-to definitions and such
     "JoosepAlviste/nvim-ts-context-commentstring", -- Sets comment strings based on what treesitter says the lang at the cursor is
@@ -13,21 +14,24 @@ local M = {
 }
 
 function M.config()
-  local ts = require('nvim-treesitter.configs')
-  ts.setup {
+  local ts = require("nvim-treesitter.configs")
+  ts.setup({
     autotag = { enable = true },
-    ensure_installed = 'all',
+    ensure_installed = "all",
     ignore_install = {
       "c_sharp",
       "cuda",
       "dart",
       "devicetree",
-      "gdscript", "gdresource",
+      "gdscript",
+      "gdresource",
       "glsl",
       "hcl",
       "heex",
       "norg",
-      "ocaml", "ocaml_interface", "ocamllex",
+      "ocaml",
+      "ocaml_interface",
+      "ocamllex",
       "pioasm",
       "sparql",
       "supercollider",
@@ -63,33 +67,34 @@ function M.config()
         },
       },
     },
-
- require'treesitter-context'.setup{
-    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-    throttle = true, -- Throttles plugin updates (may improve performance)
-    max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-    patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+    require("treesitter-context").setup({
+      enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+      throttle = true, -- Throttles plugin updates (may improve performance)
+      max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+      patterns = {
+        -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
         -- For all filetypes
         -- Note that setting an entry here replaces all other patterns for this entry.
         -- By setting the 'default' entry below, you can control which nodes you want to
         -- appear in the context window.
         default = {
-            'class',
-            'function',
-            'method',
-            'for', -- These won't appear in the context
-            'while',
-            'if',
-            'switch',
-            'case',
+          "class",
+          "function",
+          "method",
+          "for", -- These won't appear in the context
+          "while",
+          "if",
+          "switch",
+          "case",
         },
         -- Example for a specific filetype.
         -- If a pattern is missing, *open a PR* so everyone can benefit.
         --   rust = {
         --       'impl_item',
         --   },
-    },
-} }
+      },
+    }),
+  })
 
   local fname = vim.fn.expand("%:p:f")
   local fsize = vim.fn.getfsize(fname)
@@ -100,7 +105,6 @@ function M.config()
   end
   vim.api.nvim_command("set foldmethod=expr")
   vim.api.nvim_command("set foldexpr=nvim_treesitter#foldexpr()")
-
 end
 
 return M

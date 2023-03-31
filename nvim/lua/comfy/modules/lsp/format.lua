@@ -1,9 +1,7 @@
 local M = {}
 
 function M.setup()
-  vim.keymap.set("n", "<Leader>f", "<cmd>LspZeroFormat<CR>")
-
-  vim.cmd [[
+  vim.cmd([[
     function! LspZeroAutoformat()
       if exists(':LspZeroFormat')
         LspZeroFormat
@@ -31,7 +29,7 @@ function M.setup()
     command! LspZeroToggleAutoformat call LspZeroToggleAutoformat()
     command! LspZeroDisableAutoformat call LspZeroDisableAutoformat()
     command! LspZeroEnableAutoformat call LspZeroEnableAutoformat()
-  ]]
+  ]])
 end
 
 return M

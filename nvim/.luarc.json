@@ -66,5 +66,9 @@
         "/Users/IPringle/.cache/nvim/site/pack/packer/start/which-key.nvim",
         "/Users/IPringle/.cache/nvim/site/pack/packer/start/zenbones.nvim",
         "${3rd}/luassert/library"
+    ],
+    "diagnostics.globals": [
+        "vim",
+        "test"
     ]
 }

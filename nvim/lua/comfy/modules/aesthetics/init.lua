@@ -2,6 +2,7 @@ local module = "aethetics"
 local M = {
   dir = module,
   name = module,
+  cond = true,
   priority = 500,
   dependencies = {
     "nvim-tree/nvim-web-devicons", -- Icons, but not the Catholic sort
@@ -12,13 +13,13 @@ local M = {
       dependencies = "rktjmp/lush.nvim",
     },
     "lukas-reineke/indent-blankline.nvim", -- Make indents visible
-  }
+  },
 }
 
 function M.config()
   local vim = vim
   vim.cmd("colorscheme zenwritten")
-  require("indent_blankline").setup {
+  require("indent_blankline").setup({
     buftype_exclude = { "terminal" },
     char = "",
     char_highlight_list = {
@@ -31,7 +32,7 @@ function M.config()
     },
     show_trailing_blankline_indent = false,
     use_treesitter = true,
-  }
+  })
 end
 
 return M

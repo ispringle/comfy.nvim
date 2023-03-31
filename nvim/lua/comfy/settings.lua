@@ -11,28 +11,28 @@ function M.setup(vim)
   local g = vim.g
   -- local cmd = vim.cmd
 
-  local utils = require('comfy/utils')
+  local utils = utils
 
   g.mapleader = " "
 
   vim.opt.termguicolors = true
   set.swapfile = true
-  set.dir = '/tmp'
+  set.dir = "/tmp"
   set.smartcase = true
   set.ignorecase = true
   set.laststatus = 2
   set.hlsearch = true
   set.incsearch = true
-  set.inccommand = 'split'
+  set.inccommand = "split"
   set.conceallevel = 0
   set.autoread = true
-  set.mouse = 'a'
+  set.mouse = "a"
   set.hidden = true
   set.showmatch = true
   set.wrap = true
   set.splitright = true
   --o.nocompatible = true
-  set.clipboard = 'unnamedplus'
+  set.clipboard = "unnamedplus"
   set.scrolloff = 8
   set.sidescrolloff = 5
 
@@ -53,7 +53,7 @@ function M.setup(vim)
   set.foldenable = true
   set.foldlevelstart = 10
   set.foldlevel = 10
-  set.foldmethod = 'indent'
+  set.foldmethod = "indent"
 
   set.syntax = "on"
   -- set.filetype = "on"
@@ -63,18 +63,18 @@ function M.setup(vim)
 
   -- Cache dirs
   -- set.backupdir = fn.stdpath('data')..'backup'
-  set.dir = fn.stdpath('data')..'swap'
-  set.undodir = fn.stdpath('data')..'undo'
+  set.dir = fn.stdpath("data") .. "swap"
+  set.undodir = fn.stdpath("data") .. "undo"
 
   -- augroups
-  utils.augroup('specify_filetype', {
-    { 'BufRead,BufNewFile', '*.md', 'set', 'filetype=markdown' },
-    { 'BufRead,BufNewFile', '*.txt', 'set', 'filetype=text' },
+  utils.augroup("specify_filetype", {
+    { "BufRead,BufNewFile", "*.md", "set", "filetype=markdown" },
+    { "BufRead,BufNewFile", "*.txt", "set", "filetype=text" },
   })
 
-  utils.augroup('numbertoggle', {
-    { 'BufEnter,FocusGained,InsertLeave', '*', 'set', 'relativenumber'},
-    { 'BufLeave,FocusLost,InsertEnter', '*', 'set', 'norelativenumber'},
+  utils.augroup("numbertoggle", {
+    { "BufEnter,FocusGained,InsertLeave", "*", "set", "relativenumber" },
+    { "BufLeave,FocusLost,InsertEnter", "*", "set", "norelativenumber" },
   })
 end
 

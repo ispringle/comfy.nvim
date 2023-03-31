@@ -2,6 +2,10 @@ local M = {}
 
 function M.setup(wk)
   wk.register({
+    ["<leader>."] = {
+      "<cmd>Telescop file_browser path=%:p:h select_buffer=true<cr>",
+      "Browse directory",
+    },
     ["<leader>/"] = {
       "<cmd>Telescop current_buffer_fuzzy_find<cr>",
       "Fuzzy search in current buffer",

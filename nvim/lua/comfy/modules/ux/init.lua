@@ -2,9 +2,10 @@ local module = "ux"
 local M = {
   dir = module,
   name = module,
+  cond = true,
   dependencies = {
-    { "m4xshen/smartcolumn.nvim", opts = {}, }, -- "Color" line
-    "nvim-lualine/lualine.nvim",                -- Statusline, written in Lua
+    { "m4xshen/smartcolumn.nvim", opts = {} }, -- "Color" line
+    "nvim-lualine/lualine.nvim", -- Statusline, written in Lua
     {
       "utilyre/barbecue.nvim",
       version = "*",
@@ -22,31 +23,37 @@ local M = {
     -- Window
     "beauwilliams/focus.nvim", -- Window splits and movement
 
+    "stevearc/dressing.nvim", -- better default `vim.ui.select/input`
+
     -- QoL
-    "numToStr/Comment.nvim",    -- Comment stuff out
+    "numToStr/Comment.nvim", -- Comment stuff out
     "folke/todo-comments.nvim", -- Highlight & Search for TODO keywords
-    "nacro90/numb.nvim",        -- peek at lines with :123
+    "nacro90/numb.nvim", -- peek at lines with :123
     {
       "kylechui/nvim-surround", -- Surround motions
       event = "VeryLazy",
     },
-    "jghauser/mkdir.nvim",         -- mkdir on save if dir doesn"t exist
-    'ethanholz/nvim-lastplace',    -- Open files at last location
-    "sbulav/nredir.nvim",          -- Redirect cmds outputs to buffers
-    "ggandor/lightspeed.nvim",     -- vim-sneak w/ a jetpack
+    "jghauser/mkdir.nvim", -- mkdir on save if dir doesn"t exist
+    "ethanholz/nvim-lastplace", -- Open files at last location
+    "sbulav/nredir.nvim", -- Redirect cmds outputs to buffers
+    {
+      "ggandor/lightspeed.nvim", -- vim-sneak w/ a jetpack
+      dependencies = {
+        "tpope/vim-repeat",
+      },
+    },
     "norcalli/nvim-colorizer.lua", -- Highlight colorcodes
-    'declancm/cinnamon.nvim',      -- smooth scrolling everywhere
+    "declancm/cinnamon.nvim", -- smooth scrolling everywhere
   },
 }
 
-
 function M.config()
-  require('Comment').setup()
-  require('todo-comments').setup()
-  require('numb').setup()
+  require("Comment").setup()
+  require("todo-comments").setup()
+  require("numb").setup()
   require("nvim-surround").setup()
   require("nvim-lastplace").setup()
-  require('colorizer').setup()
+  require("colorizer").setup()
 
   require("comfy.modules.ux.bufferline").setup()
   require("comfy.modules.ux.cinnamon").setup()
@@ -54,6 +61,6 @@ function M.config()
   require("comfy.modules.ux.focus").setup()
 end
 
-M.keymap = require('comfy.modules.ux.keymap').setup
+M.keymap = require("comfy.modules.ux.keymap").setup
 
 return M

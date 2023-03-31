@@ -1,5 +1,4 @@
 local M = {}
-
 M.opts = {
   spec = {
 	  { import = "comfy.modules"},

@@ -2,6 +2,7 @@ local module = "git"
 local M = {
   dir = module,
   name = module,
+  cond = true,
   dependencies = {
     "lewis6991/gitsigns.nvim",
     "TimUntersberger/neogit",

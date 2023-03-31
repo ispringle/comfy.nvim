@@ -1,14 +1,11 @@
-local M = {}
-
-function M.setup(wk)
-  -- Normal Bindings
-  wk.register({
+return {
+  -- Normal Mode
+  ["n"] = {
     ["<leader>t"] = {
-      name = "+Toggle",
+      name = "+toggle",
       t = { "<cmd>lua vim.cmd('NeoTermToggle')<cr>", "Toggle terminal" },
-  }, { mode = "n" })
-
-  vim.keymap.set('t', '<M-Tab>', function () vim.cmd('NeoTermEnterNormal') end)
-end
-
-return M
+    },
+  },
+  -- Visual Mode
+  -- ["v"] = {},
+}

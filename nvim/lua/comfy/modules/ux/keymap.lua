@@ -1,25 +1,18 @@
-local M = {}
-
-function M.setup(wk)
-  wk.register({
+return {
+  -- Normal Mode
+  ["n"] = {
     ["<leader>"] = {
       ["p"] = { "<cmd>Legendary<cr>", "Open legend" },
     },
-  }, { mode = "n" })
-  -- Window Stuff
-  wk.register({
+    -- Window Stuff
     ["<leader>w"] = {
-      name = "+window",
+      name = "+Window",
       h = { "<cmd>FocusSplitLeft<cr>", "Move to or create left window", silent = true },
       j = { "<cmd>FocusSplitDown<cr>", "Move to or create down window", silent = true },
       k = { "<cmd>FocusSplitUp<cr>", "Move to or create up window", silent = true },
       l = { "<cmd>FocusSplitRight<cr>", "Move to or create right window", silent = true },
     },
-  })
-
-  -- Buffer Stuff
-  -- Normal Bindings
-  wk.register({
+    -- Buffer Stuff
     ["<leader>b"] = {
       name = "+Buffer",
       ["^"] = { "<cmd>BufferLineGoToBuffer 1<cr>", "Goto 1st buffer" },
@@ -56,15 +49,12 @@ function M.setup(wk)
       },
       W = { "<cmd>Bwipeout<cr>", "Wipeout buffer" },
     },
-  }, { mode = "n" })
-
-  -- Visual Bindings
-  wk.register({
+  },
+  -- Visual Mode
+  ["v"] = {
     ["<leader>f"] = {
       name = "+File",
       c = {},
     },
-  }, { mode = "v" })
-end
-
-return M
+  },
+}

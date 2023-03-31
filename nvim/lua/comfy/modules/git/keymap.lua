@@ -1,12 +1,11 @@
-local M = {}
-
-function M.setup(wk)
-  wk.register({
+return {
+  -- Normal Mode
+  ["n"] = {
     ["<leader>g"] = {
       name = "+Git",
       o = { "<cmd>Neogit<cr>", "Toggle Neogit" },
-    }
-  })
-end
-
-return M
+    },
+  },
+  -- Visual Mode
+  ["v"] = {},
+}

@@ -28,6 +28,4 @@ function M.config()
   require("femaco").setup()
 end
 
-M.keymap = require("comfy.modules.util.keymap").setup
-
 return M

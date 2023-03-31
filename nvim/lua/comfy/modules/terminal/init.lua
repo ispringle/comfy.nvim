@@ -13,8 +13,9 @@ function M.config()
   require("neo-term").setup({
     exclude_buftypes = { "terminal" },
   })
+  vim.keymap.set("t", "<M-Tab>", function()
+    vim.cmd("NeoTermEnterNormal")
+  end)
 end
-
-M.keymap = require("comfy.modules.lsp.keymap").setup
 
 return M

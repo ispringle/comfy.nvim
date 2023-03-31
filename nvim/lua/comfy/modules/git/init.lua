@@ -10,10 +10,8 @@ local M = {
 }
 
 function M.config()
-  require('gitsigns').setup()
-  require('neogit').setup()
+  require("gitsigns").setup()
+  require("neogit").setup()
 end
-
-M.keymap = require('comfy.modules.git.keymap').setup
 
 return M

@@ -21,20 +21,24 @@ function M.config()
   require("comfy.modules.keymapping.mappings").setup()
 
   local wk = require("which-key")
-  -- local utils = utils
-  -- local key_table = {}
-  -- local key_sources = { "files", "git", "lsp", "terminal", "util", "ux" }
-  -- for _, module in pairs(key_sources) do
-  --   module = "comfy.modules." .. module
-  --   key_table = utils.merge(key_table, require(module).keymap)
-  -- end
+  local utils = utils
+  local key_table = {}
+  local key_sources = {
+    -- "files",
+    "git",
+    "lsp",
+    "terminal",
+    "util",
+    "ux",
+  }
+  for _, module in pairs(key_sources) do
+    module = "comfy.modules." .. module .. ".keymap"
+    key_table = utils.merge(key_table, require(module))
+  end
 
-  require("comfy.modules.files").keymap(wk)
-  require("comfy.modules.git").keymap(wk)
-  require("comfy.modules.lsp").keymap(wk)
-  require("comfy.modules.terminal").keymap(wk)
-  require("comfy.modules.util").keymap(wk)
-  require("comfy.modules.ux").keymap(wk)
+  for mode, mappings in pairs(key_table) do
+    wk.register(mappings, { mode = mode })
+  end
 end
 
 return M

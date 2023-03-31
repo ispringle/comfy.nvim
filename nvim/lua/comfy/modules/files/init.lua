@@ -16,6 +16,4 @@ function M.config()
   require("comfy.modules.files.lir").setup()
 end
 
-M.keymap = require("comfy.modules.files.keymap").setup
-
 return M

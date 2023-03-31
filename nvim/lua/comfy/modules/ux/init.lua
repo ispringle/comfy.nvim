@@ -61,6 +61,4 @@ function M.config()
   require("comfy.modules.ux.focus").setup()
 end
 
-M.keymap = require("comfy.modules.ux.keymap").setup
-
 return M

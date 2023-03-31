@@ -1,5 +1,3 @@
-local M = {}
-
 ToggleInlineVirtualLines = function()
   local status = vim.diagnostic.config
   print(status)
@@ -9,10 +7,9 @@ ToggleInlineVirtualLines = function()
     vim.diagnostic.config({ virtual_lines = true })
   end
 end
-
-function M.setup(wk)
-  -- Normal Bindings
-  wk.register({
+return {
+  -- Normal Mode
+  ["n"] = {
     ["<leader>F"] = { "<cmd>LspZeroFormat<cr>", "Format" },
     ["<leader>l"] = {
       name = "+LSP",
@@ -68,16 +65,13 @@ function M.setup(wk)
       -- {key = "]d<cr>", func = "<cmd>lua vim.lsp.diagnostic.goto_next({ border = 'rounded', max_width = 80})<cr>"},
       -- {key = "[d<cr>", func = "<cmd>lua vim.lsp.diagnostic.goto_prev({ border = 'rounded', max_width = 80})<cr>"},
     },
-  }, { mode = "n" })
-
-  -- Visual Bindings
-  wk.register({
+  },
+  -- Visual Mode
+  ["v"] = {
     ["<leader>L"] = {
       name = "+LSP",
       c = { "<cmd>lua vim.lsp.buf.range_code_action()<cr>", "Code Action on Range", mode = "v" },
       f = { "<cmd>lua vim.lsp.buf.range_formatting()<cr>", "Range Format", mode = "v" },
     },
-  }, { mode = "v" })
-end
-
-return M
+  },
+}

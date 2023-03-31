@@ -1,7 +1,6 @@
-local M = {}
-
-function M.setup(wk)
-  wk.register({
+return {
+  -- Normal Mode
+  ["n"] = {
     ["<leader>."] = {
       "<cmd>Telescop file_browser path=%:p:h select_buffer=true<cr>",
       "Browse directory",
@@ -41,7 +40,7 @@ function M.setup(wk)
       name = "+Toggle",
       f = { "<cmd>FeMaco<cr>", "Open code block in scratch buffer" },
     },
-  })
-end
-
-return M
+  },
+  -- Visual Mode
+  -- ["v"] = {},
+}

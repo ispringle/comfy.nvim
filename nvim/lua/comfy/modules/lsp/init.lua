@@ -101,6 +101,4 @@ function M.config()
   require("fidget").setup()
 end
 
-M.keymap = require("comfy.modules.lsp.keymap").setup
-
 return M

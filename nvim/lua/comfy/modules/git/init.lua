@@ -12,7 +12,7 @@ local M = {
 
 function M.config()
   require("gitsigns").setup()
-  require("neogit").setup({ kind = "floating" })
+  require("neogit").setup()
 end
 
 return M

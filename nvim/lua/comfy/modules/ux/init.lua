@@ -23,11 +23,13 @@ local M = {
     -- UI
     {
       "folke/noice.nvim",
+      cond = true,
       dependencies = {
         "MunifTanjim/nui.nvim",
         "rcarriga/nvim-notify",
       },
     },
+    "rcarriga/nvim-notify",
 
     -- Window
     "beauwilliams/focus.nvim", -- Window splits and movement
@@ -63,6 +65,9 @@ function M.config()
   require("nvim-surround").setup()
   require("nvim-lastplace").setup()
   require("colorizer").setup()
+
+  require("notify").setup({ render = "compact" })
+  vim.notify = require("notify")
 
   require("comfy.modules.ux.noice").setup()
   require("comfy.modules.ux.bufferline").setup()

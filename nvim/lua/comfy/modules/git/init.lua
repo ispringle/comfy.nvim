@@ -5,14 +5,14 @@ local M = {
   cond = true,
   dependencies = {
     "lewis6991/gitsigns.nvim",
-    "TimUntersberger/neogit",
+    -- "TimUntersberger/neogit",
     "tpope/vim-fugitive",
   },
 }
 
 function M.config()
   require("gitsigns").setup()
-  require("neogit").setup()
+  -- require("neogit").setup()
 end
 
 return M

@@ -4,11 +4,21 @@ function M.setup()
   require("noice").setup({
     cmdline = {
       enabled = true,
-      view = "cmdline_popup",
+      view = "cmdline",
       format = {
         cmdline = { pattern = "^:", icon = "", lang = "vim" },
-        search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
-        search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+        search_down = {
+          kind = "search",
+          pattern = "^/",
+          icon = " ",
+          lang = "regex",
+        },
+        search_up = {
+          kind = "search",
+          pattern = "^%?",
+          icon = " ",
+          lang = "regex",
+        },
         filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
         lua = {
           pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" },
@@ -145,44 +155,7 @@ function M.setup()
       lsp_doc_border = false,
     },
     throttle = 1000 / 30,
-    views = {
-      cmdline_popup = {
-        border = {
-          style = "none",
-          padding = { 1, 2 },
-        },
-        filter_options = {},
-        position = {
-          row = "25%",
-          col = "50%",
-        },
-        size = {
-          width = 60,
-          height = "auto",
-        },
-        win_options = {
-          winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-        },
-      },
-      popupmenu = {
-        relative = "editor",
-        position = {
-          row = "30%",
-          col = "50%",
-        },
-        size = {
-          width = 60,
-          height = 10,
-        },
-        border = {
-          style = "rounded",
-          padding = { 0, 1 },
-        },
-        win_options = {
-          winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
-        },
-      },
-    },
+    views = {},
     routes = {
       {
         view = "notify",

@@ -5,10 +5,12 @@ local M = {
   cond = true,
   dependencies = {
     { "chrisgrieser/nvim-spider", lazy = true },
+    "stevearc/overseer.nvim",
   },
 }
 
 function M.config()
+  require("overseer").setup()
   require("spider").setup({ skipInsignificantPunctuation = false })
   vim.keymap.set(
     { "n", "o", "x" },

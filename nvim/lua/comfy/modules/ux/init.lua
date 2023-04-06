@@ -75,7 +75,7 @@ function M.config()
   require("notify").setup({ render = "compact" })
   vim.notify = require("notify")
 
-  -- require("comfy.modules.ux.noice").setup()
+  require("comfy.modules.ux.noice").setup()
   require("comfy.modules.ux.bufferline").setup()
   require("comfy.modules.ux.cinnamon").setup()
   require("comfy.modules.ux.dashboard").setup()

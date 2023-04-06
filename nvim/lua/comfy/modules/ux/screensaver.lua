@@ -1,6 +1,6 @@
 local timer
 local M = {
-  after = 0.5,
+  after = 5,
   timer = timer,
 }
 

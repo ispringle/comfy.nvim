@@ -4,7 +4,10 @@ local M = {
   name = module,
   cond = true,
   dependencies = {
-    { "m4xshen/smartcolumn.nvim", opts = {} }, -- "Color" line
+    {
+      "m4xshen/smartcolumn.nvim",
+      opts = { disabled_filetypes = { "alpha", "help", "text", "lazy", "mason" } },
+    }, -- "Color" line
     "nvim-lualine/lualine.nvim", -- Statusline, written in Lua
     {
       "utilyre/barbecue.nvim",
@@ -55,6 +58,9 @@ local M = {
     },
     "norcalli/nvim-colorizer.lua", -- Highlight colorcodes
     "declancm/cinnamon.nvim", -- smooth scrolling everywhere
+
+    "goolord/alpha-nvim", -- Dash
+    "eandrju/cellular-automaton.nvim", -- Silly animations
   },
 }
 
@@ -69,11 +75,13 @@ function M.config()
   require("notify").setup({ render = "compact" })
   vim.notify = require("notify")
 
-  require("comfy.modules.ux.noice").setup()
+  -- require("comfy.modules.ux.noice").setup()
   require("comfy.modules.ux.bufferline").setup()
   require("comfy.modules.ux.cinnamon").setup()
+  require("comfy.modules.ux.dashboard").setup()
   require("comfy.modules.ux.lualine").setup()
   require("comfy.modules.ux.focus").setup()
+  require("comfy.modules.ux.screensaver").setup()
 end
 
 return M

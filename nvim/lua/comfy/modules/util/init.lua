@@ -20,12 +20,18 @@ local M = {
     },
 
     "AckslD/nvim-FeMaco.lua", -- Open code blocks in scratch buffer
+    "rktjmp/paperplanes.nvim",
   },
 }
 
 function M.config()
   require("comfy.modules.util.telescope").setup()
   require("femaco").setup()
+  require("paperplanes").setup({
+    register = "+",
+    provider = "0x0.st",
+    notifier = vim.notify or print,
+  })
 end
 
 return M

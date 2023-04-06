@@ -10,7 +10,10 @@ local M = {
 }
 
 function M.config()
-  require("overseer").setup()
+  require("overseer").setup({
+    strategy = { "toggleterm", direction = "vertical", auto_scroll = true },
+  })
+
   require("spider").setup({ skipInsignificantPunctuation = false })
   vim.keymap.set(
     { "n", "o", "x" },

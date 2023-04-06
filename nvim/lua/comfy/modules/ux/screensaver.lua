@@ -1,6 +1,6 @@
 local timer
 local M = {
-  after = 5,
+  wait = 5, -- minutes
   timer = timer,
 }
 
@@ -14,7 +14,7 @@ function M.setup()
       end
       timer = vim.loop.new_timer()
       timer:start(
-        M.after * 1000,
+        M.wait * 60000,
         0,
         vim.schedule_wrap(function()
           if timer:is_active() then

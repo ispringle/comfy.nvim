@@ -13,6 +13,7 @@ local M = {
       dependencies = "rktjmp/lush.nvim",
     },
     "lukas-reineke/indent-blankline.nvim", -- Make indents visible
+    "cormacrelf/dark-notify",
   },
 }
 
@@ -33,6 +34,8 @@ function M.config()
     show_trailing_blankline_indent = false,
     use_treesitter = true,
   })
-end
+
+  require("dark_notify").run() 
+end 
 
 return M

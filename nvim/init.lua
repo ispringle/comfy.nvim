@@ -15,5 +15,5 @@ vim.g.loaded_remote_plugins = false
 -- vim.opt.filetype = "plugin indent off"
 -- vim.opt.shadafile = "NONE"
 
-local comfy = require('comfy')
+local comfy = require("comfy")
 comfy.setup()

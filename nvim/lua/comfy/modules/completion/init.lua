@@ -2,7 +2,7 @@ local module = "completion"
 local M = {
   dir = module,
   name = module,
-  cond = false,
+  cond = true,
   dependencies = {
     { "neoclide/coc.nvim", branch = "release", },
   },

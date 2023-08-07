@@ -2,7 +2,7 @@ local module = "lsp"
 local M = {
   dir = module,
   name = module,
-  cond = true,
+  cond = false,
   dependencies = {
     {
       "VonHeikemen/lsp-zero.nvim",
@@ -42,7 +42,7 @@ local M = {
     -- Snippets
     {
       "L3MON4D3/LuaSnip",
-      build = "make install-jsregexp",
+      build = "make install_jsregexp",
       dependencies = {
         "rafamadriz/friendly-snippets",
       },
@@ -79,6 +79,7 @@ local M = {
 
     -- DAP
     {
+      cond = false,
       "mfussenegger/nvim-dap",
       dependencies = {
         "jay-babu/mason-nvim-dap.nvim",
@@ -96,7 +97,7 @@ function M.config()
   require("comfy.modules.lsp.luasnip").setup()
   require("comfy.modules.lsp.lspsaga").setup()
   require("comfy.modules.lsp.trouble").setup()
-  require("comfy.modules.lsp.dap").setup()
+  -- require("comfy.modules.lsp.dap").setup()
 
   require("fidget").setup()
 end

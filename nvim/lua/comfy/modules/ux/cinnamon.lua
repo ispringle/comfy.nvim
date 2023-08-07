@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-  require('cinnamon').setup({
+  require("cinnamon").setup({
     default_keymaps = true,
     extra_keymaps = true,
     extended_keymaps = true,
@@ -13,7 +13,7 @@ function M.setup()
     hide_cursor = true,
     horizontal_scroll = true,
     max_length = -1,
-    scroll_limit = 150,
+    scroll_limit = 50,
   })
 end
 

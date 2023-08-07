@@ -24,9 +24,10 @@ function M.config()
   local utils = utils
   local key_table = {}
   local key_sources = {
+    -- "completion",
     -- "files",
     "git",
-    "lsp",
+    -- "lsp",
     "terminal",
     "util",
     "ux",

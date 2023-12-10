@@ -19,16 +19,16 @@ function M.config()
   vim.api.nvim_create_autocmd("FileType", {pattern = "markdown", command = "set awa"})
   vim.api.nvim_create_autocmd("BufLeave", {pattern = "*.md", command = "silent! wall"})
 
-  require('mkdnflow').setup({
-    perspective = {
-      priority = 'root',
-      root_tell= 'root.md',
-    },
-    links = {
-      style = 'markdown',
-      transform_explicit = false,
-    }
-  })
+  -- require('mkdnflow').setup({
+  --   perspective = {
+  --     priority = 'root',
+  --     root_tell= 'root.md',
+  --   },
+  --   links = {
+  --     style = 'markdown',
+  --     transform_explicit = false,
+  --   }
+  -- })
 end
 
 return M

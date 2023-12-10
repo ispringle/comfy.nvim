@@ -21,6 +21,12 @@ function M.setup()
       },
       undo = {},
     },
+    pickers = {
+      colorscheme = {
+        enable_preview = true,
+        theme = "ivy",
+      },
+    },
   })
   require("telescope").load_extension("fzf") -- moar speed
 

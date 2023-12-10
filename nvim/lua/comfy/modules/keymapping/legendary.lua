@@ -92,21 +92,14 @@ function M.setup()
         max_timestamps = 10,
       },
     },
-    which_key = {
-      auto_register = true,
-      do_binding = true,
-    },
-    -- Which extensions to load; no extensions are loaded by default.
-    -- Setting the plugin name to `false` disables loading the extension.
-    -- Setting it to any other value will attempt to load the extension,
-    -- and pass the value as an argument to the extension, which should
-    -- be a single function. Extensions are modules under `legendary.extensions.*`
-    -- which return a single function, which is responsible for loading and
-    -- initializing the extension.
     extensions = {
       nvim_tree = false,
       smart_splits = false,
       op_nvim = false,
+    which_key = {
+      auto_register = true,
+      do_binding = true,
+    },
     },
     scratchpad = {
       -- How to open the scratchpad buffer,
